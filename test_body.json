@@ -1,0 +1,16 @@
+﻿{
+    "address":  "Test Address",
+    "fullName":  "Test Guest",
+    "checkin":  "2026-07-15",
+    "guests":  "2",
+    "rooms":  "1",
+    "roomType":  "deluxe-king",
+    "contactMethod":  "phone",
+    "checkout":  "2026-07-17",
+    "gender":  "male",
+    "extras":  "Breakfast, Spa",
+    "bedPref":  "Extra Bed",
+    "phone":  "+923001234567",
+    "requests":  "Test request",
+    "email":  "test@example.com"
+}

@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Ayaan Royale - Luxury Redefined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="layout-wrapper">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <svg class="logo-svg" viewBox="0 0 48 48" width="40" height="40" fill="none">
+                        <rect class="logo-bg" x="4" y="8" width="40" height="34" rx="6"/>
+                        <polygon class="logo-star" points="24,6 28,18 42,18 30,26 34,40 24,31 14,40 18,26 6,18 20,18" opacity="0.9"/>
+                        <text x="24" y="36" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Playfair Display">A</text>
+                    </svg>
+                    <div>
+                        <h2>Ayaan <span>Royale</span></h2>
+                        <span class="logo-tagline">Luxury Redefined</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav" id="sidebarNav">
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-tooltip="Home"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                    <li><a href="#about" class="nav-link" data-tooltip="About"><i class="fas fa-info-circle"></i> <span>About</span></a></li>
+                    <li><a href="#rooms" class="nav-link" data-tooltip="Rooms"><i class="fas fa-bed"></i> <span>Rooms</span></a></li>
+                    <li><a href="#amenities" class="nav-link" data-tooltip="Amenities"><i class="fas fa-concierge-bell"></i> <span>Amenities</span></a></li>
+                    <li><a href="#gallery" class="nav-link" data-tooltip="Gallery"><i class="fas fa-images"></i> <span>Gallery</span></a></li>
+                    <li><a href="#restaurant" class="nav-link" data-tooltip="Restaurant"><i class="fas fa-utensils"></i> <span>Restaurant</span></a></li>
+                    <li><a href="#canteen" class="nav-link" data-tooltip="Canteen"><i class="fas fa-store"></i> <span>Canteen</span></a></li>
+                    <li><a href="#booking" class="nav-link" data-tooltip="Booking"><i class="fas fa-calendar-check"></i> <span>Booking</span></a></li>
+                    <li><a href="#faq" class="nav-link" data-tooltip="FAQ"><i class="fas fa-question-circle"></i> <span>FAQ</span></a></li>
+                    <li><a href="#location" class="nav-link" data-tooltip="Location"><i class="fas fa-map-marked-alt"></i> <span>Location</span></a></li>
+                    <li><a href="#contact" class="nav-link" data-tooltip="Contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+                    <li><a href="#components" class="nav-link" data-tooltip="Components"><i class="fas fa-cubes"></i> <span>Components</span></a></li>
+                    <li><a href="#page404" class="nav-link" id="nav404Link" data-tooltip="404 Demo"><i class="fas fa-exclamation-triangle"></i> <span>404 Demo</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar-section">
+                        <div class="avatar-wrap" id="sidebarAvatarWrap">
+                            <img src="https://i.pravatar.cc/150?img=68" alt="Mr. Ayaan" class="avatar-img">
+                            <span class="avatar-camera"><i class="fas fa-camera"></i></span>
+                        </div>
+                        <div class="sidebar-avatar-dropdown" id="sidebarAvatarDropdown">
+                            <button id="sidebarLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="user-name">Mr. Ayaan</p>
+                        <p class="user-role">Hotel Manager</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-area">
+
+            <header class="header" id="header">
+                <div class="header-inner">
+                    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="header-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="headerSearch" placeholder="Search rooms, amenities..." autocomplete="off">
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="header-btn theme-btn" id="themeBtn" title="Theme Colors">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button class="header-btn dark-toggle" id="darkToggle" title="Toggle Dark Mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="header-btn auth-btn" id="authBtn" title="Login / Sign Up">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <div class="avatar-wrap" id="headerAvatarWrap">
+                            <img src="https://i.pravatar.cc/150?img=68" alt="Mr. Ayaan" id="userAvatar" class="avatar-img">
+                            <span class="avatar-camera"><i class="fas fa-camera"></i></span>
+                            <div class="header-avatar-dropdown" id="headerAvatarDropdown">
+                                <button id="headerLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                            </div>
+                        </div>
+                        <button class="hamburger" id="hamburger" aria-label="Menu">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main id="main-content">
+
+                <section class="hero" id="home">
+                    <div class="hero-carousel" id="heroCarousel">
+                        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80');">
+                            <div class="hero-overlay"></div>
+                            <div class="container">
+                                <div class="hero-content">
+                                    <span class="hero-badge">Welcome to Luxury</span>
+                                    <h1>Hotel <span class="highlight">Ayaan Royale</span></h1>
+                                    <p>Experience unmatched luxury and comfort in the heart of the city. Where every moment becomes a cherished memory.</p>
+                                    <div class="hero-btns">
+                                        <button type="button" class="btn btn-primary" onclick="openQuickBook()">Book Now</button>
+                                        <a href="#rooms" class="btn btn-outline">Explore Rooms</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1920&q=80');">
+                            <div class="hero-overlay"></div>
+                            <div class="container">
+                                <div class="hero-content">
+                                    <span class="hero-badge">Premium Suites</span>
+                                    <h1>Luxurious <span class="highlight">Rooms & Suites</span></h1>
+                                    <p>From deluxe rooms to presidential suites, each space is designed for your ultimate comfort and relaxation.</p>
+                                    <div class="hero-btns">
+                                        <a href="#rooms" class="btn btn-primary">View Rooms</a>
+                                        <a href="#gallery" class="btn btn-outline">Take a Tour</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80');">
+                            <div class="hero-overlay"></div>
+                            <div class="container">
+                                <div class="hero-content">
+                                    <span class="hero-badge">Fine Dining</span>
+                                    <h1>World-Class <span class="highlight">Dining</span></h1>
+                                    <p>Indulge in culinary excellence at our award-winning restaurants with cuisines from around the world.</p>
+                                    <div class="hero-btns">
+                                        <a href="#restaurant" class="btn btn-primary">Explore Menu</a>
+                                        <a href="#booking" class="btn btn-outline btn-reserve">Reserve Table</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920&q=80');">
+                            <div class="hero-overlay"></div>
+                            <div class="container">
+                                <div class="hero-content">
+                                    <span class="hero-badge">Luxury Spa</span>
+                                    <h1>Ultimate <span class="highlight">Relaxation</span></h1>
+                                    <p>Rejuvenate your mind and body at our world-class spa with traditional and modern therapies.</p>
+                                    <div class="hero-btns">
+                                        <a href="#amenities" class="btn btn-primary">Explore Spa</a>
+                                        <a href="#booking" class="btn btn-outline">Book Session</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1773162845612-41803ae79fc2?auto=format&fit=crop&w=1920&q=80');">
+                            <div class="hero-overlay"></div>
+                            <div class="container">
+                                <div class="hero-content">
+                                    <span class="hero-badge">Rooftop Dining</span>
+                                    <h1>Starlit <span class="highlight">Rooftop</span></h1>
+                                    <p>Dine under the stars at our spectacular rooftop restaurant with panoramic city views and live music.</p>
+                                    <div class="hero-btns">
+                                        <a href="#canteen" class="btn btn-primary">View Menu</a>
+                                        <a href="#booking" class="btn btn-outline btn-reserve">Reserve Table</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80');">
+                            <div class="hero-overlay"></div>
+                            <div class="container">
+                                <div class="hero-content">
+                                    <span class="hero-badge">Grand Pool</span>
+                                    <h1>Infinity <span class="highlight">Pool</span></h1>
+                                    <p>Take a dip in our temperature-controlled infinity pool surrounded by lush tropical gardens.</p>
+                                    <div class="hero-btns">
+                                        <a href="#amenities" class="btn btn-primary">View Amenities</a>
+                                        <a href="#gallery" class="btn btn-outline">See Gallery</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-controls">
+                        <button class="hero-arrow hero-prev"><i class="fas fa-chevron-left"></i></button>
+                        <div class="hero-dots"></div>
+                        <button class="hero-arrow hero-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </section>
+
+                <section class="quick-links" id="quickLinks">
+                    <div class="container">
+                        <div class="quick-links-grid">
+                            <a href="#booking" class="quick-link"><i class="fas fa-calendar-check"></i><span>Book Room</span></a>
+                            <a href="#rooms" class="quick-link"><i class="fas fa-bed"></i><span>Our Rooms</span></a>
+                            <a href="#restaurant" class="quick-link"><i class="fas fa-utensils"></i><span>Dining</span></a>
+                            <a href="#canteen" class="quick-link"><i class="fas fa-store"></i><span>Canteen</span></a>
+                            <a href="#amenities" class="quick-link"><i class="fas fa-spa"></i><span>Spa & Wellness</span></a>
+                            <a href="#contact" class="quick-link"><i class="fas fa-headset"></i><span>24/7 Support</span></a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="about">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">About Us</span>
+                            <h2>Welcome to <span class="highlight">Ayaan Royale</span></h2>
+                            <p>Where luxury meets comfort and every guest is treated like royalty.</p>
+                        </div>
+                        <div class="about-grid">
+                            <div class="about-image">
+                                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" alt="Hotel Lobby" loading="lazy">
+                                <div class="about-experience">
+                                    <span class="counter" data-target="25">0</span><span>+</span>
+                                    <p>Years of Excellence</p>
+                                </div>
+                            </div>
+                            <div class="about-content">
+                                <h3>A Legacy of Luxury Since 1999</h3>
+                                <p>Hotel Ayaan Royale has been synonymous with luxury hospitality for over two decades. Located in the heart of the city, our hotel offers a perfect blend of modern elegance and traditional warmth.</p>
+                                <p>Under the expert leadership of <strong>Mr. Ayaan</strong>, our team is dedicated to providing every guest with an unforgettable experience. From our concierge to our housekeeping staff, every member of the Ayaan Royale family is committed to excellence.</p>
+                                <div class="about-stats">
+                                    <div class="stat-item">
+                                        <span class="counter" data-target="5000">0</span><span>+</span>
+                                        <p>Rooms & Suites</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="counter" data-target="10000">0</span><span>+</span>
+                                        <p>Staff Members</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="counter" data-target="100">0</span><span>+</span>
+                                        <p>Total Awards</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="counter" data-target="100000">0</span><span>+</span>
+                                        <p>Total Income (Half Month)</p>
+                                    </div>
+                                </div>
+                                <div class="about-manager">
+                                    <img src="https://i.pravatar.cc/150?img=68" alt="Mr. Ayaan" class="avatar-img" style="width:60px;height:60px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;">
+                                    <div>
+                                        <h4>Mr. Ayaan</h4>
+                                        <span>Hotel Manager & Owner</span>
+                                        <p>"Our guests are not just customers — they are our family. Every stay at Ayaan Royale is a story of luxury, care, and unforgettable memories. From our grand lobby to our infinity pool, from our rooftop dining beneath the stars to our spa that heals your soul — every corner of this hotel whispers your name. Whether you come for romance, family, or business, you will be treated like the royalty you are. This is not just a hotel. This is your home away from home. This is Ayaan Royale. And we are waiting to welcome you."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section bg-light" id="rooms">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Accommodation</span>
+                            <h2>Our <span class="highlight">Rooms & Suites</span></h2>
+                            <p>Choose from our carefully curated selection of luxurious accommodations.</p>
+                        </div>
+                        <div class="tabs-container">
+                            <div class="tabs-nav" role="tablist">
+                                <button class="tab-btn active" data-tab="deluxe" role="tab">Deluxe Rooms</button>
+                                <button class="tab-btn" data-tab="suite" role="tab">Executive Suites</button>
+                                <button class="tab-btn" data-tab="presidential" role="tab">Presidential</button>
+                                <button class="tab-btn" data-tab="family" role="tab">Family Rooms</button>
+                            </div>
+                            <div class="tabs-content">
+                                <div class="tab-panel active" id="tab-deluxe" role="tabpanel">
+                                    <div class="rooms-grid" data-pagination="3">
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" loading="lazy">
+                                                <span class="badge badge-hot">Popular</span>
+                                                <span class="room-price">$199<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+                                                <h3>Deluxe King Room</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 35m²</span>
+                                                </div>
+                                                <p>Spacious room with king-sized bed, city view, and premium amenities for a comfortable stay.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Deluxe King Room')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm" data-tooltip="View detailed information">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" loading="lazy">
+                                                <span class="badge badge-new">New</span>
+                                                <span class="room-price">$219<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Deluxe Twin Room</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> Twin Beds</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 38m²</span>
+                                                </div>
+                                                <p>Perfect for friends or colleagues, featuring two comfortable twin beds and modern decor.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Deluxe Twin Room')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm" data-tooltip="View detailed information">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" loading="lazy">
+                                                <span class="badge badge-offer">-20%</span>
+                                                <span class="room-price">$189<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Deluxe City View</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 3 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> Queen Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 40m²</span>
+                                                </div>
+                                                <p>Enjoy panoramic city views from this beautifully appointed deluxe room with queen bedding.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Deluxe City View')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm" data-tooltip="View detailed information">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" loading="lazy">
+                                                <span class="room-price">$209<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Deluxe Premium</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 42m²</span>
+                                                </div>
+                                                <p>Premium deluxe experience with added amenities, sitting area, and upgraded bathroom.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Deluxe Premium')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm" data-tooltip="View detailed information">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" loading="lazy">
+                                                <span class="room-price">$229<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Deluxe Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 50m²</span>
+                                                </div>
+                                                <p>Spacious suite with separate living area, workstation, and luxury bathroom with soaking tub.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Deluxe Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm" data-tooltip="View detailed information">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Deluxe Room" loading="lazy">
+                                                <span class="badge badge-hot">Popular</span>
+                                                <span class="room-price">$239<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Deluxe Corner Room</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 3 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 45m²</span>
+                                                </div>
+                                                <p>Corner room with dual aspect windows offering stunning views and abundant natural light.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Deluxe Corner Room')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm" data-tooltip="View detailed information">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination" id="roomsPagination">
+                                        <button class="page-btn" data-page="prev" disabled><i class="fas fa-chevron-left"></i> Prev</button>
+                                        <div class="page-numbers"></div>
+                                        <button class="page-btn" data-page="next">Next <i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                <div class="tab-panel" id="tab-suite" role="tabpanel">
+                                    <div class="rooms-grid">
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80" alt="Executive Suite" loading="lazy">
+                                                <span class="badge badge-hot">Best Seller</span>
+                                                <span class="room-price">$399<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Executive Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 65m²</span>
+                                                </div>
+                                                <p>Luxurious suite with separate living and dining areas, premium amenities, and butler service.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Executive Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Junior Suite" loading="lazy">
+                                                <span class="room-price">$349<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Junior Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> Queen Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 55m²</span>
+                                                </div>
+                                                <p>Compact suite with elegant design, comfortable living area, and modern bathroom.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Junior Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Business Suite" loading="lazy">
+                                                <span class="badge badge-new">New</span>
+                                                <span class="room-price">$429<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Business Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 2 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King Bed</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 70m²</span>
+                                                </div>
+                                                <p>Designed for business travelers with a dedicated workspace, meeting area, and executive lounge access.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Business Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-panel" id="tab-presidential" role="tabpanel">
+                                    <div class="rooms-grid">
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80" alt="Presidential Suite" loading="lazy">
+                                                <span class="badge badge-offer">Limited</span>
+                                                <span class="room-price">$1199<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Presidential Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 4 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> King + Queen</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 120m²</span>
+                                                </div>
+                                                <p>The pinnacle of luxury. Two bedrooms, expansive living room, private dining, jacuzzi, and panoramic views.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Presidential Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1767050387941-b97f0d5a3232?auto=format&fit=crop&w=800&q=80" alt="Royal Suite" loading="lazy">
+                                                <span class="badge badge-hot">VIP</span>
+                                                <span class="room-price">$1,699<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Royal Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 6 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> 3 Bedrooms</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 200m²</span>
+                                                </div>
+                                                <p>Our most exclusive accommodation. Three bedrooms, private terrace, butler service, and personalized concierge.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Royal Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-panel" id="tab-family" role="tabpanel">
+                                    <div class="rooms-grid">
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Family Room" loading="lazy">
+                                                <span class="badge badge-hot">Family Choice</span>
+                                                <span class="room-price">$299<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Family Suite</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 4 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> 2 Queen Beds</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 60m²</span>
+                                                </div>
+                                                <p>Perfect for families, with two queen beds, children's play area, and family-friendly amenities.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Family Suite')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80" alt="Family Room" loading="lazy">
+                                                <span class="room-price">$329<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Family Deluxe</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 5 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> 2 King Beds</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 75m²</span>
+                                                </div>
+                                                <p>Spacious family room with two king beds, kitchenette, and connecting door option.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Family Deluxe')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="room-card">
+                                            <div class="room-img">
+                                                <img src="https://images.unsplash.com/photo-1689729771136-46e2ee831b83?auto=format&fit=crop&w=800&q=80" alt="Family Room" loading="lazy">
+                                                <span class="badge badge-offer">Save 30%</span>
+                                                <span class="room-price">$379<span>/night</span></span>
+                                            </div>
+                                            <div class="room-info">
+<h3>Family Premium</h3>
+                                                <div class="room-details">
+                                                    <span><i class="fas fa-user"></i> 6 Guests</span>
+                                                    <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                                    <span><i class="fas fa-ruler-combined"></i> 85m²</span>
+                                                </div>
+                                                <p>Our largest family option with three bedrooms, two bathrooms, and a fully equipped kitchen.</p>
+                                                <div class="room-actions">
+                                                    <button class="btn btn-primary btn-sm" onclick="openQuickBook('Family Premium')">Book Now</button>
+                                                    <button class="btn btn-outline btn-sm">Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="amenities">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Amenities</span>
+                            <h2>World-Class <span class="highlight">Amenities</span></h2>
+                            <p>Everything you need for a perfect stay, all under one roof.</p>
+                        </div>
+                        <div class="amenities-grid">
+
+                            <div class="amenity-card" data-tooltip="Spa & Wellness">
+                                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" alt="Spa & Wellness" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Spa & Wellness</h3>
+                            </div>
+                            <div class="amenity-card" data-tooltip="Fitness Center">
+                                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Fitness Center" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Gym & Fitness</h3>
+                            </div>
+                            <div class="amenity-card" data-tooltip="Fine Dining">
+                                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" alt="Fine Dining" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Fine Dining</h3>
+                            </div>
+                            <div class="amenity-card" data-tooltip="Valet Parking">
+                                <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=600&q=80" alt="Valet Parking" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Valet Parking</h3>
+                            </div>
+
+                            <div class="amenity-card" data-tooltip="Business Center">
+                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Business Center" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Business Center</h3>
+                            </div>
+                            <div class="amenity-card" data-tooltip="Room Service">
+                                <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=600&q=80" alt="Room Service" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Room Service</h3>
+                            </div>
+                            <div class="amenity-card" data-tooltip="Airport Shuttle">
+                                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" alt="Airport Shuttle" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Airport Shuttle</h3>
+                            </div>
+
+                            <div class="amenity-card" data-tooltip="Kids Club">
+                                <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=600&q=80" alt="Kids Club" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Kids Club</h3>
+                            </div>
+                            <div class="amenity-card" data-tooltip="Rooftop Terrace">
+                                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Rooftop Terrace" loading="lazy">
+                                <div class="amenity-overlay"></div>
+                                <h3>Rooftop Terrace</h3>
+                            </div>
+                        </div>
+                        <div class="amenity-highlights">
+                            <div class="amenity-highlight-card">
+                                <img src="https://images.unsplash.com/photo-1746439324859-b182173a9790?auto=format&fit=crop&w=1920&q=80" alt="Luxury Spa" loading="lazy">
+                                <div class="amenity-highlight-overlay">
+                                    <i class="fas fa-spa"></i>
+                                    <h3>Luxury Spa</h3>
+                                    <p>Traditional massage, steam rooms, jacuzzi & more</p>
+                                    <a href="#booking" class="btn btn-primary btn-sm">Book Now</a>
+                                </div>
+                            </div>
+                            <div class="amenity-highlight-card">
+                                <img src="https://images.unsplash.com/photo-1773162845612-41803ae79fc2?auto=format&fit=crop&w=1920&q=80" alt="Rooftop Dining" loading="lazy">
+                                <div class="amenity-highlight-overlay">
+                                    <i class="fas fa-utensils"></i>
+                                    <h3>Rooftop Dining</h3>
+                                    <p>Exquisite cuisine under the stars with live music</p>
+                                    <a href="#booking" class="btn btn-primary btn-sm btn-reserve">Reserve Table</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section bg-light" id="gallery">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Gallery</span>
+                            <h2>Photo <span class="highlight">Gallery</span></h2>
+                            <p>Take a visual tour of our magnificent property.</p>
+                        </div>
+                        <div class="gallery-grid" id="galleryGrid" data-infinite="4">
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80" alt="Hotel Exterior" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Hotel Exterior</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80" alt="Deluxe Room" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Deluxe Room</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Restaurant" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Fine Dining Restaurant</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Swimming Pool" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Swimming Pool</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1745327883290-1e9c6447b938?auto=format&fit=crop&w=600&q=80" alt="Spa" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Spa & Wellness</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80" alt="Lobby" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Grand Lobby</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80" alt="Suite" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Executive Suite</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1779249430124-b5bf40d4f9c9?auto=format&fit=crop&w=600&q=80" alt="Outdoor" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Garden Terrace</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" alt="Gym" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Fitness Center</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Gym Equipment" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Modern Gym Equipment</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=600&q=80" alt="Bathroom" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Luxury Bathroom</span>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=600&q=80" alt="Family Room" loading="lazy">
+                                <div class="gallery-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                    <span>Family Room</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="infinite-scroll-trigger" id="galleryTrigger">
+                            <div class="loading-spinner"></div>
+                            <span>Scroll to load more photos</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="restaurant">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Dining</span>
+                            <h2>World-Class <span class="highlight">Dining</span></h2>
+                            <p>Embark on a culinary journey at our award-winning restaurants.</p>
+                        </div>
+                        <div class="restaurant-grid">
+                            <div class="restaurant-card">
+                                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Fine Dining" loading="lazy">
+                                <div class="restaurant-info">
+                                    <span class="badge badge-hot">Michelin Star</span>
+                                    <h3>Royale Fine Dining</h3>
+                                    <p>Experience exquisite cuisine crafted by world-renowned chefs. Our signature restaurant offers a perfect blend of international and local flavors.</p>
+                                    <div class="restaurant-meta">
+                                        <span><i class="fas fa-clock"></i> 7AM - 11PM</span>
+                                        <span><i class="fas fa-star"></i> 4.9 Rating</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="restaurant-card">
+                                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt="Cafe" loading="lazy">
+                                <div class="restaurant-info">
+                                    <span class="badge badge-new">New</span>
+                                    <h3>Ayaan's Cafe</h3>
+                                    <p>A cozy cafe serving artisanal coffee, fresh pastries, and light meals. Perfect for casual meetings or relaxing afternoons.</p>
+                                    <div class="restaurant-meta">
+                                        <span><i class="fas fa-clock"></i> 6AM - 10PM</span>
+                                        <span><i class="fas fa-star"></i> 4.7 Rating</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="restaurant-card">
+                                <img src="https://images.unsplash.com/photo-1758165532022-a68f291317ba?auto=format&fit=crop&w=800&q=80" alt="Rooftop Bar" loading="lazy">
+                                <div class="restaurant-info">
+                                    <span class="badge badge-offer">Happy Hour</span>
+                                    <h3>Skyline Rooftop Bar</h3>
+                                    <p>Enjoy handcrafted cocktails and stunning city views from our rooftop bar. Live music every evening.</p>
+                                    <div class="restaurant-meta">
+                                        <span><i class="fas fa-clock"></i> 4PM - 2AM</span>
+                                        <span><i class="fas fa-star"></i> 4.8 Rating</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section bg-light" id="canteen">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Canteen & Dining</span>
+                            <h2>Spacious <span class="highlight">Canteen</span></h2>
+                            <p>Our grand canteen offers a delightful dining experience with a wide variety of cuisines.</p>
+                        </div>
+                        <div class="canteen-showcase">
+                            <div class="canteen-big-img">
+                                <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1400&q=80" alt="Hotel Canteen" loading="lazy">
+                                <div class="canteen-badge">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Grand Canteen</span>
+                                </div>
+                            </div>
+                            <div class="canteen-features">
+                                <div class="canteen-feature">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <h4>Multi-Cuisine Buffet</h4>
+                                        <p>Over 100+ dishes from around the world</p>
+                                    </div>
+                                </div>
+                                <div class="canteen-feature">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <h4>24/7 Service</h4>
+                                        <p>Open around the clock for our guests</p>
+                                    </div>
+                                </div>
+                                <div class="canteen-feature">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <h4>Halal Certified</h4>
+                                        <p>100% halal food with premium ingredients</p>
+                                    </div>
+                                </div>
+                                <div class="canteen-feature">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <h4>Family Friendly</h4>
+                                        <p>Special kids menu and family seating area</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="canteen-gallery">
+                            <div class="canteen-gallery-item">
+                                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt="Cafe" loading="lazy">
+                                <span>Coffee & Snacks</span>
+                            </div>
+                            <div class="canteen-gallery-item">
+                                <img src="https://images.unsplash.com/photo-1773162845612-41803ae79fc2?auto=format&fit=crop&w=1920&q=80" alt="Rooftop" loading="lazy">
+                                <span>Rooftop Dining</span>
+                            </div>
+                            <div class="canteen-gallery-item">
+                                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Restaurant" loading="lazy">
+                                <span>Fine Dine Area</span>
+                            </div>
+                            <div class="canteen-gallery-item">
+                                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Food" loading="lazy">
+                                <span>Fresh Buffet</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="booking">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Reservation</span>
+                            <h2>Book Your <span class="highlight">Stay</span></h2>
+                            <p>Complete the form below and our team will confirm your reservation within 24 hours.</p>
+                        </div>
+                        <div class="booking-wrapper">
+                            <div class="booking-form-container">
+                                <div class="stepper">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-info">
+                                            <span class="step-title">Personal Info</span>
+                                            <span class="step-desc">Your details</span>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-info">
+                                            <span class="step-title">Room Selection</span>
+                                            <span class="step-desc">Choose room</span>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-info">
+                                            <span class="step-title">Extras</span>
+                                            <span class="step-desc">Add-ons</span>
+                                        </div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-info">
+                                            <span class="step-title">Confirmation</span>
+                                            <span class="step-desc">Review & pay</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="booking-form" id="bookingForm">
+                                    <div class="step-content active" data-step="1">
+                                        <h3>Personal Information</h3>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="bkName">Full Name</label>
+                                                <input type="text" id="bkName" placeholder="Enter your full name" required>
+                                                <span class="form-error">Please enter your name</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="bkEmail">Email Address</label>
+                                                <input type="email" id="bkEmail" placeholder="Enter your email" required>
+                                                <span class="form-error">Please enter a valid email</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="bkPhone">Phone Number</label>
+                                                <div class="phone-input-wrapper">
+                                                    <div class="phone-country-select">
+                                                        <button type="button" class="phone-country-btn" id="bkPhoneBtn">
+                                                            <span class="country-flag">PK</span>
+                                                            <span class="phone-code">+92</span>
+                                                            <i class="fas fa-chevron-down"></i>
+                                                        </button>
+                                                        <div class="phone-country-dropdown" id="bkPhoneDropdown">
+                                                            <input type="text" class="phone-search-input" placeholder="Search country...">
+                                                            <div class="phone-country-list" id="bkPhoneList"></div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="tel" id="bkPhone" class="phone-number-input" placeholder="300 1234567" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <div class="radio-group">
+                                                    <label class="radio-label"><input type="radio" name="bkGender" value="male" checked><span class="radiomark"></span> Male</label>
+                                                    <label class="radio-label"><input type="radio" name="bkGender" value="female"><span class="radiomark"></span> Female</label>
+                                                    <label class="radio-label"><input type="radio" name="bkGender" value="other"><span class="radiomark"></span> Other</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bkAddress">Address</label>
+                                            <input type="text" id="bkAddress" placeholder="Enter your address">
+                                        </div>
+                                        <div class="form-btns">
+                                            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="step-content" data-step="2">
+                                        <h3>Room Selection</h3>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="bkRoomType">Room Type</label>
+                                                <div class="custom-select" id="bkRoomSelect">
+                                                    <div class="select-selected" tabindex="0" role="combobox"><span>Select room type</span><i class="fas fa-chevron-down"></i></div>
+                                                    <div class="select-items" role="listbox">
+                                                        <div class="select-option" data-value="deluxe-king">Deluxe King Room - $199/night</div>
+                                                        <div class="select-option" data-value="deluxe-twin">Deluxe Twin Room - $219/night</div>
+                                                        <div class="select-option" data-value="executive">Executive Suite - $399/night</div>
+                                                        <div class="select-option" data-value="junior">Junior Suite - $349/night</div>
+                                                        <div class="select-option" data-value="presidential">Presidential Suite - $1199/night</div>
+                                                        <div class="select-option" data-value="family">Family Suite - $299/night</div>
+                                                    </div>
+                                                    <select id="bkRoomType" required class="select-hidden"><option value="">Select</option><option value="deluxe-king">Deluxe King Room</option><option value="deluxe-twin">Deluxe Twin Room</option><option value="executive">Executive Suite</option><option value="junior">Junior Suite</option><option value="presidential">Presidential Suite</option><option value="family">Family Suite</option></select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="bkGuests">Number of Guests</label>
+                                                <select id="bkGuests">
+                                                    <option value="1">1 Guest</option>
+                                                    <option value="2" selected>2 Guests</option>
+                                                    <option value="3">3 Guests</option>
+                                                    <option value="4">4 Guests</option>
+                                                    <option value="5">5 Guests</option>
+                                                    <option value="6">6+ Guests</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="bkCheckin">Check-in Date</label>
+                                                <input type="date" id="bkCheckin" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="bkCheckout">Check-out Date</label>
+                                                <input type="date" id="bkCheckout" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="bkRooms">Number of Rooms</label>
+                                                <div class="range-slider-group" style="padding:8px 0">
+                                                    <input type="range" id="bkRooms" min="1" max="5" value="1">
+                                                    <span id="bkRoomsVal">1 Room</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Bed Preference</label>
+                                                <div class="checkbox-group">
+                                                    <label class="checkbox-label"><input type="checkbox" value="extra-bed"><span class="checkmark"></span> Extra Bed</label>
+                                                    <label class="checkbox-label"><input type="checkbox" value="baby-cot"><span class="checkmark"></span> Baby Cot</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-btns">
+                                            <button type="button" class="btn btn-outline" onclick="prevStep(1)"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next Step <i class="fas fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="step-content" data-step="3">
+                                        <h3>Additional Extras</h3>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Add-on Services</label>
+                                                <div class="checkbox-group" style="flex-direction:column">
+                                                    <label class="checkbox-label"><input type="checkbox" value="breakfast"><span class="checkmark"></span> Breakfast Buffet - $25/day</label>
+                                                    <label class="checkbox-label"><input type="checkbox" value="airport"><span class="checkmark"></span> Airport Transfer - $40</label>
+                                                    <label class="checkbox-label"><input type="checkbox" value="spa"><span class="checkmark"></span> Spa Package - $80</label>
+                                                    <label class="checkbox-label"><input type="checkbox" value="dinner"><span class="checkmark"></span> Fine Dining Dinner - $60</label>
+                                                    <label class="checkbox-label"><input type="checkbox" value="tour"><span class="checkmark"></span> City Tour - $50</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="bkRequests">Special Requests</label>
+                                                <textarea id="bkRequests" rows="5" placeholder="Any special requests or requirements..."></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Preferred Contact Method</label>
+                                            <div class="radio-group">
+                                                <label class="radio-label"><input type="radio" name="bkContact" value="phone" checked><span class="radiomark"></span> Phone</label>
+                                                <label class="radio-label"><input type="radio" name="bkContact" value="email"><span class="radiomark"></span> Email</label>
+                                                <label class="radio-label"><input type="radio" name="bkContact" value="whatsapp"><span class="radiomark"></span> WhatsApp</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-btns">
+                                            <button type="button" class="btn btn-outline" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            <button type="button" class="btn btn-primary" onclick="nextStep(4)">Review Booking <i class="fas fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="step-content" data-step="4">
+                                        <h3>Review & Confirm</h3>
+                                        <div class="booking-summary" id="bookingSummary">
+                                            <div class="summary-row"><span>Name:</span> <span id="summaryName">-</span></div>
+                                            <div class="summary-row"><span>Email:</span> <span id="summaryEmail">-</span></div>
+                                            <div class="summary-row"><span>Room:</span> <span id="summaryRoom">-</span></div>
+                                            <div class="summary-row"><span>Check-in:</span> <span id="summaryCheckin">-</span></div>
+                                            <div class="summary-row"><span>Check-out:</span> <span id="summaryCheckout">-</span></div>
+                                            <div class="summary-row"><span>Guests:</span> <span id="summaryGuests">-</span></div>
+                                            <div class="summary-row total"><span>Total:</span> <span id="summaryTotal">-</span></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="captcha-container">
+                                                <label>Security Check</label>
+                                                <div class="captcha-box">
+                                                    <span id="captchaQuestion">5 + 3 = ?</span>
+                                                    <input type="number" id="captchaInput" placeholder="Enter answer" required>
+                                                    <button type="button" class="captcha-refresh" id="captchaRefresh" data-tooltip="New question"><i class="fas fa-sync-alt"></i></button>
+                                                </div>
+                                                <span class="captcha-error" id="captchaError">Incorrect answer. Please try again.</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-btns">
+                                            <button type="button" class="btn btn-outline" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i> Confirm Booking</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="booking-sidebar">
+                                <div class="info-card">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <h4>Call Us</h4>
+                                    <p>+92 300 1234567</p>
+                                    <p>+92 300 7654321</p>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-clock"></i>
+                                    <h4>Check-in / Check-out</h4>
+                                    <p>Check-in: 2:00 PM</p>
+                                    <p>Check-out: 12:00 PM</p>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <h4>Cancellation Policy</h4>
+                                    <p>Free cancellation up to 48 hours before check-in.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="faq">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">FAQ</span>
+                            <h2>Frequently Asked <span class="highlight">Questions</span></h2>
+                            <p>Everything you need to know before your stay.</p>
+                        </div>
+                        <div class="faq-grid">
+                            <div class="accordion">
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>What time is check-in and check-out?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Check-in is from 2:00 PM and check-out is until 12:00 PM. Early check-in and late check-out are available upon request and subject to availability.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>Do you offer airport transportation?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Yes, we offer complimentary airport pickup and drop-off for all guests. Please inform us of your flight details at least 24 hours in advance.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>Is breakfast included in the room price?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Breakfast is included for all suite bookings and can be added to deluxe rooms for a nominal fee. Our breakfast buffet is served from 7:00 AM to 10:30 AM.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>Do you allow pets?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Yes, we are a pet-friendly hotel! We welcome small to medium-sized pets. A one-time cleaning fee of $50 applies. Please notify us at the time of booking.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>What amenities are available for business travelers?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Our business center offers meeting rooms, high-speed WiFi, printing services, and a dedicated concierge for corporate guests. We also have executive lounge access for suite guests.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>Is there a cancellation policy?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Free cancellation is available up to 48 hours before check-in. Cancellations within 48 hours will be charged one night's stay. Non-refundable rates are clearly marked during booking.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button class="accordion-header">
+                                        <span>Do you have facilities for special events?</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </button>
+                                    <div class="accordion-body">
+                                        <p>Absolutely! We have multiple banquet halls and event spaces for weddings, conferences, and social gatherings. Our events team can customize packages to suit your needs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="components">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">UI Components</span>
+                            <h2>Interactive <span class="highlight">Components</span></h2>
+                            <p>Advanced UI elements with enhanced interaction and real-time feedback.</p>
+                        </div>
+                        <div class="components-grid">
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-star"></i><h3>Star Rating</h3></div>
+                                <div class="star-rating" id="starRating">
+                                    <div class="stars">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                    <span class="rating-text" id="ratingText">Select rating</span>
+                                    <input type="hidden" id="ratingValue" value="0">
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-palette"></i><h3>Color Picker</h3></div>
+                                <div class="color-picker-group">
+                                    <div class="color-presets" id="colorPresets">
+                                        <button class="color-swatch active" style="--swatch:#D4AF37" data-color="#D4AF37" title="Gold"></button>
+                                        <button class="color-swatch" style="--swatch:#1A1A2E" data-color="#1A1A2E" title="Navy"></button>
+                                        <button class="color-swatch" style="--swatch:#800020" data-color="#800020" title="Burgundy"></button>
+                                        <button class="color-swatch" style="--swatch:#0d9488" data-color="#0d9488" title="Teal"></button>
+                                        <button class="color-swatch" style="--swatch:#059669" data-color="#059669" title="Emerald"></button>
+                                        <button class="color-swatch" style="--swatch:#dc2626" data-color="#dc2626" title="Ruby"></button>
+                                        <button class="color-swatch" style="--swatch:#2563eb" data-color="#2563eb" title="Sapphire"></button>
+                                        <button class="color-swatch" style="--swatch:#f59e0b" data-color="#f59e0b" title="Amber"></button>
+                                    </div>
+                                    <div class="color-preview">
+                                        <div class="color-box" id="colorBox" style="background:#D4AF37"></div>
+                                        <span class="color-hex" id="colorHex">#D4AF37</span>
+                                    </div>
+                                    <input type="hidden" id="colorValue" value="#D4AF37">
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-sliders-h"></i><h3>Range Slider</h3></div>
+                                <div class="range-slider-group">
+                                    <div class="range-values"><span id="rangeMinLabel">0</span><span id="rangeMaxLabel">100</span></div>
+                                    <div class="range-slider-container">
+                                        <input type="range" class="range-slider range-min" id="rangeSliderMin" min="0" max="100" value="25" step="1">
+                                        <input type="range" class="range-slider range-max" id="rangeSliderMax" min="0" max="100" value="75" step="1">
+                                        <div class="range-track-bg"></div>
+                                        <div class="range-fill" id="rangeFill"></div>
+                                    </div>
+                                    <div class="range-selected" id="rangeSelected">Selected: 25 — 75</div>
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-tags"></i><h3>Tag Input</h3></div>
+                                <div class="tag-input-group" id="tagInputGroup">
+                                    <div class="tag-list" id="tagList"></div>
+                                    <input type="text" class="tag-input" id="tagInput" placeholder="Type and press Enter or comma">
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-upload"></i><h3>File Upload</h3></div>
+                                <div class="file-upload-zone" id="fileUploadZone">
+                                    <div class="file-upload-content">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Drag & drop files or <span class="file-browse">browse</span></p>
+                                        <span class="file-hint">Images, PDFs, Documents (max 10MB each)</span>
+                                    </div>
+                                    <input type="file" class="file-input" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx,.txt">
+                                </div>
+                                <div class="file-list" id="fileList"></div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-calendar-alt"></i><h3>Date Picker</h3></div>
+                                <div class="custom-date-picker" id="demoDatePicker">
+                                    <div class="date-input-wrapper">
+                                        <input type="text" class="date-input" id="demoDateInput" placeholder="dd/mm/yyyy" readonly>
+                                        <i class="fas fa-calendar-alt date-icon"></i>
+                                    </div>
+                                    <div class="date-calendar" id="demoCalendar">
+                                        <div class="calendar-header">
+                                            <button type="button" class="cal-nav cal-prev"><i class="fas fa-chevron-left"></i></button>
+                                            <span class="cal-month-year" id="calMonthYear"></span>
+                                            <button type="button" class="cal-nav cal-next"><i class="fas fa-chevron-right"></i></button>
+                                        </div>
+                                        <div class="calendar-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+                                        <div class="calendar-days" id="calendarDays"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-key"></i><h3>OTP Input</h3></div>
+                                <div class="otp-inputs" style="justify-content:center">
+                                    <input type="text" maxlength="1" class="otp-box" data-index="0">
+                                    <input type="text" maxlength="1" class="otp-box" data-index="1">
+                                    <input type="text" maxlength="1" class="otp-box" data-index="2">
+                                    <input type="text" maxlength="1" class="otp-box" data-index="3">
+                                    <input type="text" maxlength="1" class="otp-box" data-index="4">
+                                    <input type="text" maxlength="1" class="otp-box" data-index="5">
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-check-circle"></i><h3>Form Status</h3></div>
+                                <div class="form-status">
+                                    <div class="status-item"><i class="fas fa-save"></i><span id="autoSaveStatus">Auto-save active</span></div>
+                                    <div class="status-item"><i class="fas fa-history"></i><span id="lastSaved">Waiting for changes...</span></div>
+                                    <button class="btn btn-primary" id="clearSavedData" style="font-size:0.85rem;padding:10px 18px;width:100%;"><i class="fas fa-trash-alt"></i> Clear Saved Data</button>
+                                </div>
+                            </div>
+                            <div class="component-card">
+                                <div class="component-header"><i class="fas fa-bolt"></i><h3>Demo Actions</h3></div>
+                                <div class="demo-actions">
+                                    <button class="btn btn-primary btn-sm" onclick="showToast('Toast notification demo!', 'success')" data-tooltip="Click to test"><i class="fas fa-check-circle"></i> Toast</button>
+                                    <button class="btn btn-outline btn-sm" onclick="showToast('Error demo message', 'error')" data-tooltip="Error toast"><i class="fas fa-times-circle"></i> Error Toast</button>
+                                    <button class="btn btn-primary btn-sm" onclick="showSkeleton()" data-tooltip="Show skeleton loader"><i class="fas fa-layer-group"></i> Skeleton</button>
+                                    <button class="btn btn-outline btn-sm" onclick="showSpinner()" data-tooltip="Show spinner"><i class="fas fa-spinner"></i> Spinner</button>
+                                    <button class="btn btn-primary btn-sm" onclick="openDialog('info', 'Information', 'This is an information dialog. You can show any message here.')" data-tooltip="Info dialog"><i class="fas fa-info-circle"></i> Info Dialog</button>
+                                    <button class="btn btn-outline btn-sm" onclick="openDialog('confirm', 'Confirm Action', 'Are you sure you want to proceed with this booking?', function(){ showToast('Action confirmed!', 'success'); })" data-tooltip="Confirm dialog"><i class="fas fa-question-circle"></i> Confirm Dialog</button>
+                                    <button class="btn btn-primary btn-sm" onclick="openDialog('success', 'Booking Confirmed', 'Your deluxe room has been booked successfully! A confirmation email will be sent shortly.', function(){ showToast('Thank you!', 'success'); })" data-tooltip="Success dialog"><i class="fas fa-check-circle"></i> Success Dialog</button>
+                                    <button class="btn btn-outline btn-sm" onclick="openDialog('error', 'Error', 'Something went wrong. Please try again later.', function(){ showToast('Operation cancelled', 'info'); })" data-tooltip="Error dialog"><i class="fas fa-times-circle"></i> Error Dialog</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section bg-light" id="contact">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Contact</span>
+                            <h2>Get In <span class="highlight">Touch</span></h2>
+                            <p>We'd love to hear from you. Reach out to us anytime.</p>
+                        </div>
+                        <div class="contact-wrapper">
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <h4>Address</h4>
+                                        <p>Hotel Ayaan Royale, 42 Luxury Boulevard, Gulberg, Lahore, Pakistan</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <div>
+                                        <h4>Phone</h4>
+                                        <p>+92 300 1234567<br>+92 300 7654321</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>info@ayaanroyale.com<br>reservations@ayaanroyale.com</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-globe"></i>
+                                    <div>
+                                        <h4>Website</h4>
+                                        <p>www.ayaanroyale.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact-form-wrapper">
+                                <form class="contact-form" id="contactForm" novalidate onsubmit="return handleContactForm(event)">
+                                     <h4>Send us a Message</h4>
+                                     <div class="form-row">
+                                         <div class="form-group">
+                                             <label for="conName">Your Name</label>
+                                             <input type="text" id="conName" placeholder="Enter your name" required>
+                                             <span class="form-error">Please enter your name</span>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="conEmail">Your Email</label>
+                                             <input type="email" id="conEmail" placeholder="Enter your email" required>
+                                             <span class="form-error">Please enter a valid email</span>
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="conSubject">Subject</label>
+                                         <input type="text" id="conSubject" placeholder="Subject" required>
+                                         <span class="form-error">Please enter a subject</span>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="conMessage">Message</label>
+                                         <div class="editor-wrapper">
+                                             <div class="editor-toolbar" id="editorToolbar">
+                                                 <button type="button" data-cmd="bold" title="Bold"><i class="fas fa-bold"></i></button>
+                                                 <button type="button" data-cmd="italic" title="Italic"><i class="fas fa-italic"></i></button>
+                                                 <button type="button" data-cmd="underline" title="Underline"><i class="fas fa-underline"></i></button>
+                                                 <span class="editor-sep"></span>
+                                                 <button type="button" data-cmd="insertUnorderedList" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                                                 <button type="button" data-cmd="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                                                 <span class="editor-sep"></span>
+                                                 <button type="button" data-cmd="createLink" title="Insert Link"><i class="fas fa-link"></i></button>
+                                                 <span class="editor-sep"></span>
+                                                 <div class="editor-color-wrap">
+                                                     <button type="button" class="editor-color-btn" title="Text Color" data-color-target="text"><i class="fas fa-palette"></i></button>
+                                                     <div class="editor-color-dropdown" data-color-type="text">
+                                                         <div class="editor-color-presets">
+                                                             <button type="button" style="background:#ef4444" data-color="#ef4444"></button>
+                                                             <button type="button" style="background:#f97316" data-color="#f97316"></button>
+                                                             <button type="button" style="background:#eab308" data-color="#eab308"></button>
+                                                             <button type="button" style="background:#22c55e" data-color="#22c55e"></button>
+                                                             <button type="button" style="background:#06b6d4" data-color="#06b6d4"></button>
+                                                             <button type="button" style="background:#3b82f6" data-color="#3b82f6"></button>
+                                                             <button type="button" style="background:#8b5cf6" data-color="#8b5cf6"></button>
+                                                             <button type="button" style="background:#ec4899" data-color="#ec4899"></button>
+                                                             <button type="button" style="background:#000" data-color="#000000"></button>
+                                                             <button type="button" style="background:#6b7280" data-color="#6b7280"></button>
+                                                             <button type="button" style="background:#fff;border:1px solid var(--border)" data-color="#ffffff"></button>
+                                                         </div>
+                                                         <label class="editor-color-custom">
+                                                             <i class="fas fa-plus"></i> Custom
+                                                             <input type="color" value="#3b82f6">
+                                                         </label>
+                                                     </div>
+                                                 </div>
+                                                 <div class="editor-color-wrap">
+                                                     <button type="button" class="editor-color-btn" title="Highlight Color" data-color-target="bg"><i class="fas fa-highlighter"></i></button>
+                                                     <div class="editor-color-dropdown" data-color-type="bg">
+                                                         <div class="editor-color-presets">
+                                                             <button type="button" style="background:#fecaca" data-color="#fecaca"></button>
+                                                             <button type="button" style="background:#fed7aa" data-color="#fed7aa"></button>
+                                                             <button type="button" style="background:#fef08a" data-color="#fef08a"></button>
+                                                             <button type="button" style="background:#bbf7d0" data-color="#bbf7d0"></button>
+                                                             <button type="button" style="background:#a5f3fc" data-color="#a5f3fc"></button>
+                                                             <button type="button" style="background:#bfdbfe" data-color="#bfdbfe"></button>
+                                                             <button type="button" style="background:#ddd6fe" data-color="#ddd6fe"></button>
+                                                             <button type="button" style="background:#fbcfe8" data-color="#fbcfe8"></button>
+                                                             <button type="button" style="background:#000" data-color="#000000"></button>
+                                                             <button type="button" style="background:#6b7280" data-color="#6b7280"></button>
+                                                             <button type="button" style="background:#fff;border:1px solid var(--border)" data-color="#ffffff"></button>
+                                                         </div>
+                                                         <label class="editor-color-custom">
+                                                             <i class="fas fa-plus"></i> Custom
+                                                             <input type="color" value="#fef08a">
+                                                         </label>
+                                                     </div>
+                                                 </div>
+                                                 <span class="editor-sep"></span>
+                                                 <button type="button" data-cmd="removeFormat" title="Remove Formatting"><i class="fas fa-eraser"></i></button>
+                                             </div>
+                                             <div class="editor-content" id="conMessage" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Write your message..."></div>
+                                         </div>
+                                         <span class="form-error">Please enter your message</span>
+                                     </div>
+                                     <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Send Message</button>
+                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section bg-dark" id="location">
+                    <div class="container">
+                        <div class="section-header">
+                            <span class="section-badge">Location</span>
+                            <h2>Find Us On <span class="highlight">Map</span></h2>
+                            <p>Conveniently located in the heart of the city with easy access to major attractions.</p>
+                        </div>
+                        <div class="location-wrapper">
+                            <div class="location-map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.209!2d74.3297!3d31.4638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391903b7e912c4e9%3A0x26e3b9b4f5f1b4a7!2sGulberg%2C%20Lahore!5e0!3m2!1sen!2s!4v1650000000000!5m2!1sen!2s" width="100%" height="450" style="border:0;border-radius:12px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <div style="text-align:center;margin-top:12px;"><a href="https://maps.google.com/?q=Hotel+Ayaan+Royale+Gulberg+Lahore" target="_blank" class="btn btn-outline btn-sm"><i class="fas fa-external-link-alt"></i> Open in Google Maps</a></div>
+                            </div>
+                            <div class="location-info">
+                                <div class="location-card">
+                                    <i class="fas fa-map-pin"></i>
+                                    <h4>Address</h4>
+                                    <p>Hotel Ayaan Royale, 42 Luxury Boulevard, Gulberg, Lahore, Pakistan</p>
+                                </div>
+                                <div class="location-card">
+                                    <i class="fas fa-car"></i>
+                                    <h4>Parking</h4>
+                                    <p>Free valet parking available for all guests. 200+ parking spaces.</p>
+                                </div>
+                                <div class="location-card">
+                                    <i class="fas fa-plane"></i>
+                                    <h4>Nearby Airport</h4>
+                                    <p>Allama Iqbal International Airport - 15 min drive</p>
+                                </div>
+                                <div class="location-card">
+                                    <i class="fas fa-train"></i>
+                                    <h4>Nearby Station</h4>
+                                    <p>Lahore Railway Station - 10 min drive</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section page-404" id="page404">
+                    <div class="container">
+                        <div class="error-content">
+                            <div class="error-code">404</div>
+                            <h2>Page Not Found</h2>
+                            <p>The page you're looking for doesn't exist or has been moved. Let us help you find your way back.</p>
+                            <div class="error-actions">
+                                <a href="#home" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+                                <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Us</a>
+                            </div>
+                            <div class="error-search">
+                                <input type="text" placeholder="Search our website..." id="errorSearch">
+                                <button><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+                <div class="container">
+                    <ol>
+                        <li><a href="#home"><i class="fas fa-home"></i></a></li>
+                        <li class="breadcrumb-current">Home</li>
+                    </ol>
+                </div>
+            </nav>
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-col">
+                            <div class="footer-logo">
+                                <svg class="logo-svg" viewBox="0 0 48 48" width="40" height="40" fill="none">
+                                    <rect class="logo-bg" x="4" y="8" width="40" height="34" rx="6"/>
+                                    <polygon class="logo-star" points="24,6 28,18 42,18 30,26 34,40 24,31 14,40 18,26 6,18 20,18" opacity="0.9"/>
+                                    <text x="24" y="36" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold" font-family="Playfair Display">A</text>
+                                </svg>
+                                <div>
+                                    <h3>Ayaan <span>Royale</span></h3>
+                                    <span>Luxury Redefined</span>
+                                </div>
+                            </div>
+                            <p>Hotel Ayaan Royale is a luxury hotel committed to providing exceptional hospitality. Under the leadership of Mr. Ayaan, we ensure every guest experiences the finest in comfort and service.</p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About Us</a></li>
+                                <li><a href="#rooms">Rooms & Suites</a></li>
+                                <li><a href="#amenities">Amenities</a></li>
+                                <li><a href="#gallery">Gallery</a></li>
+                                <li><a href="#restaurant">Restaurant</a></li>
+                                <li><a href="#canteen">Canteen</a></li>
+                                <li><a href="#location">Location</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Rooms</h4>
+                            <ul>
+                                <li><a href="#rooms">Deluxe Rooms</a></li>
+                                <li><a href="#rooms">Executive Suites</a></li>
+                                <li><a href="#rooms">Presidential Suite</a></li>
+                                <li><a href="#rooms">Family Rooms</a></li>
+                                                <li><a href="#" onclick="openQuickBook();return false;">Book Now</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="footer-col">
+                                            <h4>Contact Info</h4>
+                            <ul class="footer-contact">
+                                <li><i class="fas fa-map-marker-alt"></i> 42 Luxury Blvd, Lahore</li>
+                                <li><i class="fas fa-phone"></i> +92 300 1234567</li>
+                                <li><i class="fas fa-envelope"></i> info@ayaanroyale.com</li>
+                                <li><i class="fas fa-clock"></i> 24/7 Reception</li>
+                                <li><i class="fas fa-user"></i> Manager: Mr. Ayaan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 Hotel Ayaan Royale. All Rights Reserved. | Managed by <strong>Mr. Ayaan</strong></p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+    <button class="fab" id="fab" title="Quick Actions">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <div class="fab-menu" id="fabMenu">
+        <a href="#" class="fab-item" onclick="openQuickBook();return false;" data-tooltip="Book a room"><i class="fas fa-calendar-check"></i> Book Now</a>
+        <a href="#rooms" class="fab-item" data-tooltip="View rooms"><i class="fas fa-bed"></i> Rooms</a>
+        <a href="#restaurant" class="fab-item" data-tooltip="Dining"><i class="fas fa-utensils"></i> Dining</a>
+        <a href="#contact" class="fab-item" data-tooltip="Call us"><i class="fas fa-headset"></i> Support</a>
+    </div>
+
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="theme-panel" id="themePanel">
+        <div class="theme-panel-header">
+            <h4>Theme Colors</h4>
+            <button id="closeThemePanel"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="theme-options">
+            <button class="theme-option active" data-theme="gold" style="--clr:#D4AF37;"><span class="theme-dot" style="background:#D4AF37;"></span> Gold</button>
+            <button class="theme-option" data-theme="navy" style="--clr:#1A1A2E;"><span class="theme-dot" style="background:#1A1A2E;"></span> Navy</button>
+            <button class="theme-option" data-theme="burgundy" style="--clr:#800020;"><span class="theme-dot" style="background:#800020;"></span> Burgundy</button>
+            <button class="theme-option" data-theme="teal" style="--clr:#0d9488;"><span class="theme-dot" style="background:#0d9488;"></span> Teal</button>
+            <button class="theme-option" data-theme="emerald" style="--clr:#059669;"><span class="theme-dot" style="background:#059669;"></span> Emerald</button>
+            <button class="theme-option" data-theme="ruby" style="--clr:#dc2626;"><span class="theme-dot" style="background:#dc2626;"></span> Ruby</button>
+            <button class="theme-option" data-theme="sapphire" style="--clr:#2563eb;"><span class="theme-dot" style="background:#2563eb;"></span> Sapphire</button>
+            <button class="theme-option" data-theme="amber" style="--clr:#f59e0b;"><span class="theme-dot" style="background:#f59e0b;"></span> Amber</button>
+        </div>
+        <div class="theme-custom">
+            <h4>Custom Color</h4>
+            <div class="custom-color-row">
+                <input type="color" id="customColorPicker" value="#D4AF37">
+                <input type="text" id="customColorHex" value="#D4AF37" placeholder="#hex">
+                <button class="btn btn-primary btn-sm" id="applyCustomColor">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-overlay" id="dialogOverlay">
+        <div class="dialog" id="dialogBox">
+            <div class="dialog-header">
+                <h3 id="dialogTitle">Dialog</h3>
+                <button class="modal-close" id="dialogClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="dialog-body" id="dialogBody">
+                <div class="dialog-icon" id="dialogIcon"><i class="fas fa-info-circle"></i></div>
+                <p id="dialogMessage">Dialog message goes here.</p>
+            </div>
+            <div class="dialog-actions" id="dialogActions">
+                <button class="btn btn-outline btn-sm" id="dialogCancelBtn">Cancel</button>
+                <button class="btn btn-primary btn-sm" id="dialogConfirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="authModal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Welcome to Ayaan Royale</h3>
+                <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="login">Login</button>
+                <button class="modal-tab" data-tab="signup">Sign Up</button>
+            </div>
+            <form class="auth-form" id="loginForm">
+                <div class="login-fields" id="loginFields">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="loginPassword" placeholder="Enter password" required>
+                            <button type="button" class="password-toggle" data-target="loginPassword"><i class="far fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                </div>
+                <div class="otp-verify-section hidden" id="loginOtpSection">
+                    <p class="otp-info" id="loginOtpInfo">Enter the 6-digit code sent to your email</p>
+                    <div class="otp-inputs" id="loginOtpInputs">
+                        <input type="text" maxlength="1" class="otp-box" data-index="0">
+                        <input type="text" maxlength="1" class="otp-box" data-index="1">
+                        <input type="text" maxlength="1" class="otp-box" data-index="2">
+                        <input type="text" maxlength="1" class="otp-box" data-index="3">
+                        <input type="text" maxlength="1" class="otp-box" data-index="4">
+                        <input type="text" maxlength="1" class="otp-box" data-index="5">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" id="loginVerifyBtn"><i class="fas fa-check-circle"></i> Verify OTP</button>
+                    <p class="auth-switch"><a href="#" id="loginResendOtp">Resend OTP</a></p>
+                </div>
+                <p class="auth-switch">Don't have an account? <a href="#" id="switchToSignup">Sign Up</a></p>
+            </form>
+            <form class="auth-form hidden" id="signupForm">
+                <div class="signup-fields" id="signupFields">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="signupPassword" placeholder="Create password" required>
+                            <button type="button" class="password-toggle" data-target="signupPassword"><i class="far fa-eye"></i></button>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar"><div class="strength-fill" id="signupStrengthFill"></div></div>
+                            <span class="strength-text" id="signupStrengthText">Enter password</span>
+                        </div>
+                        <ul class="password-requirements" id="signupRequirements">
+                            <li data-req="length"><i class="fas fa-times"></i> At least 8 characters</li>
+                            <li data-req="upper"><i class="fas fa-times"></i> One uppercase letter</li>
+                            <li data-req="lower"><i class="fas fa-times"></i> One lowercase letter</li>
+                            <li data-req="number"><i class="fas fa-times"></i> One number</li>
+                            <li data-req="special"><i class="fas fa-times"></i> One special character</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPhone">Phone Number</label>
+                        <input type="tel" id="signupPhone" placeholder="+92 300 1234567">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="signupSubmitBtn"><i class="fas fa-user-plus"></i> Create Account</button>
+                </div>
+                <div class="otp-verify-section hidden" id="signupOtpSection">
+                    <p class="otp-info" id="signupOtpInfo">Enter the 6-digit code sent to your email</p>
+                    <div class="otp-inputs" id="signupOtpInputs">
+                        <input type="text" maxlength="1" class="otp-box" data-index="0">
+                        <input type="text" maxlength="1" class="otp-box" data-index="1">
+                        <input type="text" maxlength="1" class="otp-box" data-index="2">
+                        <input type="text" maxlength="1" class="otp-box" data-index="3">
+                        <input type="text" maxlength="1" class="otp-box" data-index="4">
+                        <input type="text" maxlength="1" class="otp-box" data-index="5">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block" id="signupVerifyBtn"><i class="fas fa-check-circle"></i> Verify OTP</button>
+                    <p class="auth-switch"><a href="#" id="signupResendOtp">Resend OTP</a></p>
+                </div>
+                <p class="auth-switch">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <button class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="loading-skeleton" id="loadingSkeleton">
+        <div class="skeleton-content">
+            <div class="skeleton-line skeleton-title"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line skeleton-short"></div>
+            <div class="skeleton-card-row">
+                <div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-short"></div></div>
+                <div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-short"></div></div>
+                <div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-short"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spinner-overlay" id="spinnerOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="toast" id="demoToast">
+        <i class="fas fa-info-circle"></i>
+        <span>Welcome to Hotel Ayaan Royale!</span>
+        <button class="toast-close"><i class="fas fa-times"></i></button>
+    </div>
+
+    <input type="file" id="avatarInput" accept="image/*" hidden>
+
+    <div class="quickbook-overlay" id="quickbookOverlay">
+        <div class="quickbook-modal">
+            <div class="quickbook-header">
+                <h3><i class="fas fa-calendar-check"></i> Quick Booking</h3>
+                <button type="button" class="modal-close" id="quickbookClose"><i class="fas fa-times"></i></button>
+            </div>
+            <form class="quickbook-form" id="quickbookForm">
+                <p class="quickbook-desc" id="quickbookDesc">Fill in your details and we'll confirm your reservation.</p>
+                <div class="form-group">
+                    <label for="qbName">Full Name</label>
+                    <input type="text" id="qbName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="qbPhone">Phone Number</label>
+                    <input type="tel" id="qbPhone" placeholder="03XX XXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="qbRoom">Room Type</label>
+                    <input type="text" id="qbRoom" readonly style="background:var(--bg-alt);font-weight:600;color:var(--primary);">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Send Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    // Contact form handler
+    async function handleContactForm(event) {
+        event.preventDefault();
+        var form = document.getElementById('contactForm');
+        var btn = form.querySelector('button[type="submit"]');
+        var orig = btn.innerHTML;
+        var name = document.getElementById('conName').value;
+        var email = document.getElementById('conEmail').value;
+        var subject = document.getElementById('conSubject').value;
+        var msgEl = document.getElementById('conMessage');
+        var message = msgEl ? msgEl.textContent.trim() : '';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Message';
+        btn.style.background = '#059669';
+        btn.disabled = true;
+        try {
+            var r = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email, subject: subject, message: message })
+            });
+            var d = await r.json();
+            if (d.success) {
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
+                form.reset();
+                if (msgEl) msgEl.innerHTML = '';
+            } else {
+                btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error!';
+                btn.style.background = '#dc2626';
+            }
+        } catch(e) {
+            btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error!';
+            btn.style.background = '#dc2626';
+        }
+        setTimeout(function() {
+            btn.innerHTML = orig;
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 3000);
+        return false;
+    }
+    </script>
+</body>
+</html>
+
+
+
+
