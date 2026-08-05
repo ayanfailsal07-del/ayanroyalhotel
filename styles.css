@@ -1919,3 +1919,135 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20p
 .quickbook-form .btn-block {
     margin-top: 8px;
 }
+
+/* ==================== MOBILE RESPONSIVE POLISH ==================== */
+* { -webkit-tap-highlight-color: transparent; }
+a, button, input, select, textarea, .accordion-header, .tab-btn { touch-action: manipulation; }
+
+@media (max-width: 600px) {
+    .section { padding: 44px 0; }
+    .section-header { margin-bottom: 32px; }
+    .container { padding: 0 16px; }
+
+    .hero { min-height: 72vh; }
+    .hero-carousel { height: 72vh; }
+    .hero-content { padding: 40px 0; }
+    .hero p { font-size: 0.98rem; }
+
+    .about-image img { height: 380px; }
+    .about-experience { bottom: 14px; left: 14px; padding: 14px 20px; }
+    .about-experience span { font-size: 1.8rem; }
+
+    .restaurant-meta { flex-wrap: wrap; }
+    .canteen-badge { left: 14px; bottom: 14px; padding: 10px 16px; font-size: 0.92rem; gap: 8px; }
+    .canteen-feature { padding: 14px 16px; gap: 12px; }
+    .canteen-feature i { font-size: 1.3rem; }
+
+    .location-map iframe { height: 320px; }
+    .location-card { padding: 16px 12px; }
+
+    .booking-form-container { padding: 24px 18px; }
+    .contact-form-wrapper { padding: 24px 18px; }
+    .info-card { padding: 18px; }
+
+    .footer { padding: 48px 0 0; }
+    .footer-content { gap: 28px; }
+
+    .date-calendar { width: calc(100vw - 40px); max-width: 320px; left: 50%; transform: translateX(-50%) translateY(-8px); }
+    .date-calendar.open { transform: translateX(-50%) translateY(0); }
+
+    .phone-country-dropdown { width: calc(100vw - 40px); max-width: 280px; }
+
+    .toast-container { top: 74px; right: 12px; left: 12px; }
+    .toast { min-width: 0; max-width: none; width: 100%; padding: 14px 16px; font-size: 0.85rem; }
+    #demoToast { right: 16px; bottom: 96px; }
+
+    .skeleton-card-row { grid-template-columns: 1fr; }
+
+    .form-group input, .form-group select, .form-group textarea,
+    .quickbook-form .form-group input, .header-search input,
+    .phone-number-input, .date-input { font-size: 16px; }
+
+    .modal-header { padding: 20px 20px 0; }
+    .auth-form { padding: 20px; }
+    .dialog-header { padding: 18px 20px 0; }
+    .dialog-body { padding: 16px 20px; }
+    .dialog-actions { padding: 0 20px 18px; }
+    .modal-tabs { margin: 12px 20px 0; }
+
+    .hero-controls { bottom: 18px; gap: 12px; }
+    .quick-links { margin-top: -28px; }
+
+    .canteen-gallery { gap: 10px; }
+    .canteen-gallery-item img { height: 130px; }
+}
+
+@media (max-width: 480px) {
+    .header-inner { padding: 0 12px; gap: 6px; height: 56px; }
+    .header-btn, .sidebar-toggle, .hamburger { width: 36px; height: 36px; }
+    .header-actions { gap: 5px; }
+    .header-actions .avatar-wrap { width: 34px; height: 34px; }
+
+    .hero h1 { font-size: 1.75rem; }
+    .hero-badge { font-size: 0.68rem; padding: 6px 14px; }
+    .hero-btns { flex-direction: column; gap: 10px; }
+    .btn { width: 100%; justify-content: center; }
+
+    .about-grid { gap: 28px; }
+    .about-content h3 { font-size: 1.4rem; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    .step-title { font-size: 0.7rem; }
+    .stepper { overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+    .step { min-width: 64px; }
+
+    .form-btns { flex-direction: column; }
+    .form-btns .btn { width: 100%; }
+
+    .otp-inputs { gap: 6px; justify-content: center; }
+    .otp-box { width: 40px; height: 46px; font-size: 1.1rem; }
+
+    .captcha-box { flex-wrap: wrap; }
+    .captcha-box span { min-width: 90px; }
+    .captcha-box input { flex: 1; width: auto; min-width: 90px; }
+
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .restaurant-grid { grid-template-columns: 1fr; }
+    .restaurant-card img { height: 200px; }
+    .room-img { height: 200px; }
+
+    .tabs-nav { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .tab-btn { white-space: nowrap; }
+
+    .error-actions { flex-direction: column; }
+    .error-actions .btn { width: 100%; }
+
+    .pagination { flex-wrap: wrap; }
+    .theme-panel { width: calc(100vw - 20px); right: -110vw; }
+    .theme-panel.open { right: 10px; }
+
+    .quickbook-overlay { padding: 12px; }
+    .quickbook-modal { max-height: 92vh; overflow-y: auto; }
+    .modal { max-width: 92%; }
+
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+    .lightbox-close { top: 12px; right: 12px; }
+
+    .room-actions { flex-wrap: wrap; }
+    .room-actions .btn { flex: 1; }
+}
+
+@media (max-width: 380px) {
+    .hero h1 { font-size: 1.55rem; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .stat-item span { font-size: 1.3rem; }
+    .stepper { gap: 2px; }
+    .step-number { width: 32px; height: 32px; font-size: 0.8rem; }
+    .stepper::before, .stepper::after { top: 16px; left: 36px; right: 36px; }
+    .quick-links-grid { grid-template-columns: repeat(2, 1fr); }
+    .canteen-gallery { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .otp-box { width: 36px; height: 42px; font-size: 1rem; }
+}
