@@ -1978,6 +1978,11 @@ a, button, input, select, textarea, .accordion-header, .tab-btn { touch-action: 
     .hero-controls { bottom: 18px; gap: 12px; }
     .quick-links { margin-top: -28px; }
 
+    .tabs-nav { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+    .tab-btn { white-space: nowrap; }
+    .editor-color-dropdown { left: auto; right: 0; transform: none; min-width: 0; width: max-content; max-width: calc(100vw - 32px); }
+
     .canteen-gallery { gap: 10px; }
     .canteen-gallery-item img { height: 130px; }
 }
