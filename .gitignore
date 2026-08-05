@@ -3,4 +3,5 @@ node_modules/
 server.log
 server.err
 messages.json
+bookings.json
 package-lock.json

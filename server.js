@@ -3,15 +3,21 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 const connectDB = require('./config/db');
 const User = require('./models/User');
+const Message = require('./models/Message');
+const Booking = require('./models/Booking');
 const auth = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MESSAGES_FILE = path.join(__dirname, 'messages.json');
+const BOOKINGS_FILE = path.join(__dirname, 'bookings.json');
+
+const dbReady = () => mongoose.connection.readyState === 1;
 
 app.use(cors());
 app.use(express.json());
@@ -51,6 +57,16 @@ app.post('/api/contact', async (req, res) => {
     msgs.unshift(entry);
     fs.writeFileSync(MESSAGES_FILE, JSON.stringify(msgs, null, 2));
 
+    let dbSaved = false;
+    if (dbReady()) {
+      try {
+        await Message.create({ name, email, subject, message });
+        dbSaved = true;
+      } catch (dbError) {
+        console.error('[CONTACT] DB save failed:', dbError.message);
+      }
+    }
+
     let emailSent = false;
     const to = process.env.RECIPIENT_EMAIL || email;
 
@@ -63,11 +79,23 @@ app.post('/api/contact', async (req, res) => {
           html: `<html><body><h2>New Contact Message</h2><p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Subject:</b> ${subject}</p><hr><p>${message}</p></body></html>`
         });
         emailSent = true;
-      } catch (e) {}
+      } catch (e) {
+        console.error('[CONTACT] Email failed:', e.message);
+      }
     }
 
-    res.json({ success: true, message: emailSent ? 'Message sent to email!' : 'Message saved!', emailSent });
+    const savedWhere = [];
+    if (emailSent) savedWhere.push('email');
+    if (dbSaved) savedWhere.push('database');
+    if (!dbSaved) savedWhere.push('file');
+
+    res.json({
+      success: true,
+      message: emailSent ? 'Message sent to email!' : 'Message saved!',
+      emailSent, saved: savedWhere
+    });
   } catch (error) {
+    console.error('[CONTACT] Error:', error.message);
     res.status(500).json({ success: false, message: 'Error. Try again.' });
   }
 });
@@ -77,6 +105,25 @@ app.post('/api/booking', async (req, res) => {
     const { fullName, email, phone, gender, address, roomType, guests, checkin, checkout, rooms, bedPref, extras, requests, contactMethod } = req.body;
     if (!fullName || !phone) {
       return res.status(400).json({ success: false, message: 'Required fields missing' });
+    }
+
+    const bookingEntry = {
+      id: Date.now(), fullName, email, phone, gender, address, roomType,
+      guests, checkin, checkout, rooms, bedPref, extras, requests, contactMethod,
+      receivedAt: new Date().toISOString(),
+    };
+    const bookings = (() => { try { return JSON.parse(fs.readFileSync(BOOKINGS_FILE, 'utf-8')); } catch(e) { return []; } })();
+    bookings.unshift(bookingEntry);
+    fs.writeFileSync(BOOKINGS_FILE, JSON.stringify(bookings, null, 2));
+
+    let dbSaved = false;
+    if (dbReady()) {
+      try {
+        await Booking.create(bookingEntry);
+        dbSaved = true;
+      } catch (dbError) {
+        console.error('[BOOKING] DB save failed:', dbError.message);
+      }
     }
 
     let emailSent = false;
@@ -109,10 +156,12 @@ app.post('/api/booking', async (req, res) => {
 <p style="color:#64748b;margin-top:16px">Received at ${new Date().toLocaleString()}</p></body></html>`
         });
         emailSent = true;
-      } catch (e) {}
+      } catch (e) {
+        console.error('[BOOKING] Email failed:', e.message);
+      }
     }
 
-    res.json({ success: true, message: emailSent ? 'Booking confirmed! Email sent.' : 'Booking confirmed!', emailSent });
+    res.json({ success: true, message: emailSent ? 'Booking confirmed! Email sent.' : 'Booking confirmed!', emailSent, saved: dbSaved ? 'database' : 'file' });
   } catch (error) {
     console.error('Booking error:', error);
     res.status(500).json({ success: false, message: 'Error booking.' });
@@ -356,18 +405,37 @@ app.post('/api/verify-login-otp', async (req, res) => {
   }
 });
 
-app.get('/api/messages', (req, res) => {
-  try { res.json(JSON.parse(fs.readFileSync(MESSAGES_FILE, 'utf-8'))); }
-  catch(e) { res.json([]); }
+app.get('/api/messages', async (req, res) => {
+  try {
+    if (dbReady()) {
+      const msgs = await Message.find().sort({ receivedAt: -1 }).limit(200);
+      return res.json(msgs.map((m) => ({ id: m._id, name: m.name, email: m.email, subject: m.subject, message: m.message, receivedAt: m.receivedAt.toISOString() })));
+    }
+    res.json(JSON.parse(fs.readFileSync(MESSAGES_FILE, 'utf-8')));
+  } catch(e) { res.json([]); }
+});
+
+app.get('/api/bookings', async (req, res) => {
+  try {
+    if (dbReady()) {
+      const bookings = await Booking.find().sort({ createdAt: -1 }).limit(200);
+      return res.json(bookings);
+    }
+    res.json(JSON.parse(fs.readFileSync(BOOKINGS_FILE, 'utf-8')));
+  } catch(e) { res.json([]); }
 });
 
 app.get('/admin', (req, res) => {
   res.send(`
     <html><head><title>Messages - Ayaan Royale Hotel</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body{font-family:Arial;padding:20px;background:#f5f5f5;max-width:900px;margin:auto}
+      body{font-family:Arial;padding:20px;background:#f5f5f5;max-width:1100px;margin:auto}
       h1{color:#d4a017;border-bottom:2px solid #d4a017;padding-bottom:10px}
+      .tabs{display:flex;gap:8px;margin:20px 0}
+      .tab{padding:10px 20px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-weight:600;color:#475569}
+      .tab.active{background:#d4a017;color:#fff;border-color:#d4a017}
       .msg{background:#fff;border-radius:8px;padding:15px;margin:10px 0;box-shadow:0 2px 4px rgba(0,0,0,.1)}
       .msg h3{margin:0 0 5px;color:#1e293b}
       .msg small{color:#64748b}
@@ -375,15 +443,59 @@ app.get('/admin', (req, res) => {
       .label{display:inline-block;background:#d4a017;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px}
       .empty{text-align:center;color:#94a3b8;padding:40px;font-size:18px}
       .refresh{float:right;background:#d4a017;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer}
+      table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+      th,td{text-align:left;padding:10px;border-bottom:1px solid #eee;font-size:14px;vertical-align:top}
+      th{background:#1a1a2e;color:#fff}
+      tr:hover{background:#f8f6f1}
     </style></head><body>
-    <h1>Contact Form Messages <button class="refresh" onclick="location.reload()">Refresh</button></h1>
-    <div id="msgs">Loading...</div>
+    <h1>Dashboard - Ayaan Royale Hotel <button class="refresh" onclick="load()">Refresh</button></h1>
+    <div class="tabs">
+      <button class="tab active" id="tabMsg" onclick="show('msg')">Contact Messages</button>
+      <button class="tab" id="tabBook" onclick="show('book')">Bookings</button>
+    </div>
+    <div id="content">Loading...</div>
     <script>
-      fetch('/api/messages').then(r=>r.json()).then(d=>{
-        const c=document.getElementById('msgs');
-        if(!d.length){c.innerHTML='<div class="empty">No messages yet</div>';return}
-        c.innerHTML=d.map(m=>'<div class="msg"><h3>'+m.name+' <small>('+m.email+')</small></h3><span class="label">'+m.subject+'</span><small style="float:right">'+new Date(m.receivedAt).toLocaleString()+'</small><p>'+m.message+'</p></div>').join('');
-      });
+      let mode = 'msg';
+      function show(m) {
+        mode = m;
+        document.getElementById('tabMsg').className = 'tab' + (m === 'msg' ? ' active' : '');
+        document.getElementById('tabBook').className = 'tab' + (m === 'book' ? ' active' : '');
+        load();
+      }
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+      async function load() {
+        const c = document.getElementById('content');
+        try {
+          if (mode === 'msg') {
+            const d = await fetch('/api/messages').then(r => r.json());
+            if (!d.length) { c.innerHTML = '<div class="empty">No messages yet</div>'; return; }
+            c.innerHTML = d.map(m => '<div class="msg"><h3>' + esc(m.name) + ' <small>(' + esc(m.email) + ')</small></h3><span class="label">' + esc(m.subject) + '</span><small style="float:right">' + new Date(m.receivedAt).toLocaleString() + '</small><p>' + esc(m.message) + '</p></div>').join('');
+          } else {
+            const d = await fetch('/api/bookings').then(r => r.json());
+            if (!d.length) { c.innerHTML = '<div class="empty">No bookings yet</div>'; return; }
+            c.innerHTML = '<table><tr><th>Name</th><th>Contact</th><th>Room</th><th>Dates</th><th>Details</th></tr>' + d.map(b => {
+              const when = (b.checkin || '-') + ' → ' + (b.checkout || '-');
+              const details = [];
+              if (b.guests) details.push('Guests: ' + b.guests);
+              if (b.rooms) details.push('Rooms: ' + b.rooms);
+              if (b.bedPref) details.push('Bed: ' + b.bedPref);
+              if (b.gender) details.push('Gender: ' + b.gender);
+              if (b.address) details.push('Address: ' + b.address);
+              if (b.extras) details.push('Extras: ' + b.extras);
+              if (b.requests) details.push('Requests: ' + b.requests);
+              return '<tr><td><b>' + esc(b.fullName) + '</b><br><small>' + new Date(b.createdAt || b.receivedAt).toLocaleString() + '</small></td>' +
+                '<td>' + esc(b.email || '-') + '<br>' + esc(b.phone || '-') + '</td>' +
+                '<td>' + esc(b.roomType || '-') + '</td><td>' + esc(when) + '</td>' +
+                '<td>' + esc(details.join('<br>') || '-') + '</td></tr>';
+            }).join('') + '</table>';
+          }
+        } catch (e) {
+          c.innerHTML = '<div class="empty">Error loading: ' + esc(e.message) + '</div>';
+        }
+      }
+      load();
     </script></body></html>
   `);
 });
