@@ -420,8 +420,10 @@ connectDB().then(() => {
     console.log('  API:      http://localhost:' + PORT + '/api');
     console.log('  Email:    ' + (useEmail?'ON':'OFF (configure .env)'));
     console.log('========================================');
-    const url = 'http://localhost:' + PORT;
-    const start = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
-    require('child_process').exec(start + ' ' + url);
+    if (process.env.NODE_ENV !== 'production') {
+      const url = 'http://localhost:' + PORT;
+      const start = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
+      require('child_process').exec(start + ' ' + url);
+    }
   });
 });
