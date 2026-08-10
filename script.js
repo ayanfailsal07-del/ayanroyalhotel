@@ -65,8 +65,36 @@
     function updateSidebarState() {
         var isOpen = sidebar.classList.contains('open');
         layoutWrapper.classList.toggle('sidebar-open', isOpen);
+        if (hamburger) hamburger.classList.toggle('active', isOpen);
         var overlay = document.querySelector('.sidebar-overlay');
         if (overlay) overlay.classList.toggle('show', isOpen && window.innerWidth <= 1100);
+    }
+
+    function ensureOverlay() {
+        var overlay = document.querySelector('.sidebar-overlay');
+        if (!overlay && window.innerWidth <= 1100) {
+            overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            overlay.addEventListener('click', function () {
+                sidebar.classList.remove('open');
+                updateSidebarState();
+            });
+            document.body.appendChild(overlay);
+        }
+        return overlay;
+    }
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('open');
+        updateSidebarState();
+        if (sidebar.classList.contains('open')) ensureOverlay();
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        updateSidebarState();
+        var overlay = document.querySelector('.sidebar-overlay');
+        if (overlay) overlay.classList.remove('show');
     }
 
     // Open sidebar on desktop by default, closed on mobile
@@ -75,39 +103,11 @@
     }
     updateSidebarState();
 
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', function () {
-            sidebar.classList.toggle('open');
-            updateSidebarState();
-            var overlay = document.querySelector('.sidebar-overlay');
-            if (!overlay && window.innerWidth <= 1100) {
-                overlay = document.createElement('div');
-                overlay.className = 'sidebar-overlay';
-                overlay.addEventListener('click', function () {
-                    sidebar.classList.remove('open');
-                    updateSidebarState();
-                });
-                document.body.appendChild(overlay);
-            }
-        });
-    }
-
-    if (hamburger) {
-        hamburger.addEventListener('click', function () {
-            this.classList.toggle('active');
-            sidebar.classList.toggle('open');
-            updateSidebarState();
-        });
-    }
+    if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
+    if (hamburger) hamburger.addEventListener('click', toggleSidebar);
 
     navLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-            hamburger.classList.remove('active');
-            sidebar.classList.remove('open');
-            updateSidebarState();
-            var overlay = document.querySelector('.sidebar-overlay');
-            if (overlay) overlay.classList.remove('show');
-        });
+        link.addEventListener('click', closeSidebar);
     });
 
     // --- Avatar change ---
