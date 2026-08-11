@@ -106,6 +106,9 @@
     if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
     if (hamburger) hamburger.addEventListener('click', toggleSidebar);
 
+    var sidebarClose = document.getElementById('sidebarClose');
+    if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+
     navLinks.forEach(function (link) {
         link.addEventListener('click', closeSidebar);
     });
