@@ -434,6 +434,13 @@ app.get('/api/health', (req, res) => {
   res.json({
     emailConfigured: useEmail && !!transporter,
     emailRecipient: process.env.RECIPIENT_EMAIL || null,
+    emailUserSet: !!process.env.EMAIL_USER,
+    emailPassSet: !!process.env.EMAIL_PASS,
+    emailHost: process.env.EMAIL_HOST || null,
+    emailPort: process.env.EMAIL_PORT || null,
+    useEmailFlag: useEmail,
+    transporterSet: !!transporter,
+    mongoUriSet: !!process.env.MONGO_URI,
     databaseConnected: dbReady(),
     time: new Date().toISOString(),
   });
