@@ -425,6 +425,15 @@ app.get('/api/bookings', async (req, res) => {
   } catch(e) { res.json([]); }
 });
 
+app.get('/api/health', (req, res) => {
+  res.json({
+    emailConfigured: useEmail && !!transporter,
+    emailRecipient: process.env.RECIPIENT_EMAIL || null,
+    databaseConnected: dbReady(),
+    time: new Date().toISOString(),
+  });
+});
+
 app.get('/admin', (req, res) => {
   res.send(`
     <html><head><title>Messages - Ayaan Royale Hotel</title>
