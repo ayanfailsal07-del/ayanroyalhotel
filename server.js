@@ -26,6 +26,8 @@ app.use(express.static(path.join(__dirname)));
 const nodemailer = require('nodemailer');
 let transporter = null;
 let useEmail = false;
+let smtpStatus = 'not-configured';
+let smtpError = null;
 
 if (process.env.EMAIL_USER && process.env.EMAIL_PASS &&
     !process.env.EMAIL_USER.includes('your') && !process.env.EMAIL_PASS.includes('your')) {
@@ -39,11 +41,15 @@ if (process.env.EMAIL_USER && process.env.EMAIL_PASS &&
     socketTimeout: 20000,
   });
   useEmail = true;
+  smtpStatus = 'verifying';
   // Verify transporter at startup
   transporter.verify().then(() => {
+    smtpStatus = 'ok';
     console.log('[EMAIL] SMTP connection verified successfully');
   }).catch((err) => {
-    console.error('[EMAIL] SMTP verification failed:', err.message);
+    console.error('[EMAIL] SMTP verification failed:', err.message, err.code || '');
+    smtpStatus = 'error';
+    smtpError = (err.message || '') + (err.code ? ' (' + err.code + ')' : '');
     useEmail = false;
   });
 }
@@ -439,6 +445,8 @@ app.get('/api/health', (req, res) => {
     emailHost: process.env.EMAIL_HOST || null,
     emailPort: process.env.EMAIL_PORT || null,
     useEmailFlag: useEmail,
+    smtpStatus: smtpStatus,
+    smtpError: smtpError,
     transporterSet: !!transporter,
     mongoUriSet: !!process.env.MONGO_URI,
     databaseConnected: dbReady(),
