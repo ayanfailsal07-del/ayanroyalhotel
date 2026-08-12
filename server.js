@@ -460,6 +460,33 @@ app.get('/api/bookings', async (req, res) => {
   } catch(e) { res.json([]); }
 });
 
+app.get('/api/smtp-check', async (req, res) => {
+  const net = require('net');
+  const targets = [
+    ['smtp.gmail.com', 587],
+    ['smtp.gmail.com', 465],
+    ['smtp.gmail.com', 25],
+    ['smtp.brevo.com', 587],
+    ['smtp.zoho.com', 465],
+    ['smtp.zoho.eu', 465],
+    ['smtp.mailgun.org', 587],
+    ['smtp.sendgrid.net', 465],
+    ['smtp.yandex.com', 465],
+    ['smtp.office365.com', 587],
+  ];
+  const results = [];
+  for (const [host, port] of targets) {
+    const started = Date.now();
+    results.push(await new Promise((resolve) => {
+      const socket = net.connect({ host, port, timeout: 6000 });
+      socket.on('connect', () => { socket.destroy(); resolve({ host, port, ok: true, ms: Date.now() - started }); });
+      socket.on('timeout', () => { socket.destroy(); resolve({ host, port, ok: false, error: 'timeout', ms: Date.now() - started }); });
+      socket.on('error', (e) => { socket.destroy(); resolve({ host, port, ok: false, error: e.code, ms: Date.now() - started }); });
+    }));
+  }
+  res.json({ results, time: new Date().toISOString() });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({
     emailConfigured: useEmail && !!transporter,
