@@ -34,6 +34,9 @@ if (process.env.EMAIL_USER && process.env.EMAIL_PASS &&
     port: parseInt(process.env.EMAIL_PORT, 10) || 587,
     secure: process.env.EMAIL_SECURE === 'true',
     auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 20000,
   });
   useEmail = true;
   // Verify transporter at startup
@@ -127,6 +130,7 @@ app.post('/api/booking', async (req, res) => {
     }
 
     let emailSent = false;
+    let emailError = null;
     const to = process.env.RECIPIENT_EMAIL || email;
 
     if (useEmail && transporter && to && !to.includes('your')) {
@@ -158,10 +162,11 @@ app.post('/api/booking', async (req, res) => {
         emailSent = true;
       } catch (e) {
         console.error('[BOOKING] Email failed:', e.message);
+        emailError = e.message;
       }
     }
 
-    res.json({ success: true, message: emailSent ? 'Booking confirmed! Email sent.' : 'Booking confirmed!', emailSent, saved: dbSaved ? 'database' : 'file' });
+    res.json({ success: true, message: emailSent ? 'Booking confirmed! Email sent.' : 'Booking confirmed (email pending).', emailSent, emailError, saved: dbSaved ? 'database' : 'file' });
   } catch (error) {
     console.error('Booking error:', error);
     res.status(500).json({ success: false, message: 'Error booking.' });
