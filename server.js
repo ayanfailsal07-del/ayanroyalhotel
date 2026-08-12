@@ -28,30 +28,54 @@ let transporter = null;
 let useEmail = false;
 let smtpStatus = 'not-configured';
 let smtpError = null;
+let activePort = parseInt(process.env.EMAIL_PORT, 10) || 587;
+let activeSecure = process.env.EMAIL_SECURE === 'true';
+
+const buildTransporter = (port, secure) => nodemailer.createTransport({
+  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+  port,
+  secure,
+  auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+  connectionTimeout: 12000,
+  greetingTimeout: 12000,
+  socketTimeout: 25000,
+});
+
+const alternatePort = (port) => (port === 465 ? { port: 587, secure: false } : { port: 465, secure: true });
 
 if (process.env.EMAIL_USER && process.env.EMAIL_PASS &&
     !process.env.EMAIL_USER.includes('your') && !process.env.EMAIL_PASS.includes('your')) {
-  transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.EMAIL_PORT, 10) || 587,
-    secure: process.env.EMAIL_SECURE === 'true',
-    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 20000,
-  });
   useEmail = true;
   smtpStatus = 'verifying';
-  // Verify transporter at startup
-  transporter.verify().then(() => {
-    smtpStatus = 'ok';
-    console.log('[EMAIL] SMTP connection verified successfully');
-  }).catch((err) => {
-    console.error('[EMAIL] SMTP verification failed:', err.message, err.code || '');
-    smtpStatus = 'error';
-    smtpError = (err.message || '') + (err.code ? ' (' + err.code + ')' : '');
-    useEmail = false;
-  });
+  transporter = buildTransporter(activePort, activeSecure);
+  (async () => {
+    const first = activePort;
+    try {
+      await transporter.verify();
+      smtpStatus = 'ok';
+      console.log('[EMAIL] SMTP verified on port', first);
+      return;
+    } catch (err) {
+      console.error('[EMAIL] SMTP verification failed on port ' + first + ':', err.code || err.message);
+      smtpError = 'port ' + first + ': ' + (err.message || '') + (err.code ? ' (' + err.code + ')' : '');
+    }
+    const alt = alternatePort(first);
+    try {
+      const altTransporter = buildTransporter(alt.port, alt.secure);
+      await altTransporter.verify();
+      transporter = altTransporter;
+      activePort = alt.port;
+      activeSecure = alt.secure;
+      smtpStatus = 'ok';
+      smtpError = null;
+      console.log('[EMAIL] SMTP verified on port', alt.port);
+    } catch (err) {
+      console.error('[EMAIL] SMTP verification failed on port ' + alt.port + ':', err.code || err.message);
+      smtpStatus = 'error';
+      smtpError += '; port ' + alt.port + ': ' + (err.message || '') + (err.code ? ' (' + err.code + ')' : '');
+      useEmail = false;
+    }
+  })();
 }
 
 app.post('/api/contact', async (req, res) => {
@@ -444,6 +468,8 @@ app.get('/api/health', (req, res) => {
     emailPassSet: !!process.env.EMAIL_PASS,
     emailHost: process.env.EMAIL_HOST || null,
     emailPort: process.env.EMAIL_PORT || null,
+    activePort: activePort,
+    activeSecure: activeSecure,
     useEmailFlag: useEmail,
     smtpStatus: smtpStatus,
     smtpError: smtpError,
