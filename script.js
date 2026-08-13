@@ -1250,7 +1250,6 @@
                         btn.style.background = '';
                         btn.disabled = false;
                         bookingForm.reset();
-                        goToStep(1);
                     }, 2000);
                 } else {
                     btn.innerHTML = orig;

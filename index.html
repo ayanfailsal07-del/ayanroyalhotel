@@ -887,36 +887,6 @@
                         </div>
                         <div class="booking-wrapper">
                             <div class="booking-form-container">
-                                <div class="stepper">
-                                    <div class="step active" data-step="1">
-                                        <div class="step-number">1</div>
-                                        <div class="step-info">
-                                            <span class="step-title">Personal Info</span>
-                                            <span class="step-desc">Your details</span>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="2">
-                                        <div class="step-number">2</div>
-                                        <div class="step-info">
-                                            <span class="step-title">Room Selection</span>
-                                            <span class="step-desc">Choose room</span>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="3">
-                                        <div class="step-number">3</div>
-                                        <div class="step-info">
-                                            <span class="step-title">Extras</span>
-                                            <span class="step-desc">Add-ons</span>
-                                        </div>
-                                    </div>
-                                    <div class="step" data-step="4">
-                                        <div class="step-number">4</div>
-                                        <div class="step-info">
-                                            <span class="step-title">Confirmation</span>
-                                            <span class="step-desc">Review & pay</span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <form class="booking-form" id="bookingForm">
                                     <div class="step-content active" data-step="1">
                                         <h3>Personal Information</h3>
@@ -963,11 +933,8 @@
                                             <label for="bkAddress">Address</label>
                                             <input type="text" id="bkAddress" placeholder="Enter your address">
                                         </div>
-                                        <div class="form-btns">
-                                            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next Step <i class="fas fa-arrow-right"></i></button>
-                                        </div>
                                     </div>
-                                    <div class="step-content" data-step="2">
+                                    <div class="step-content active" data-step="2">
                                         <h3>Room Selection</h3>
                                         <div class="form-row">
                                             <div class="form-group">
@@ -1023,12 +990,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-btns">
-                                            <button type="button" class="btn btn-outline" onclick="prevStep(1)"><i class="fas fa-arrow-left"></i> Previous</button>
-                                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next Step <i class="fas fa-arrow-right"></i></button>
-                                        </div>
                                     </div>
-                                    <div class="step-content" data-step="3">
+                                    <div class="step-content active" data-step="3">
                                         <h3>Additional Extras</h3>
                                         <div class="form-row">
                                             <div class="form-group">
@@ -1054,22 +1017,8 @@
                                                 <label class="radio-label"><input type="radio" name="bkContact" value="whatsapp"><span class="radiomark"></span> WhatsApp</label>
                                             </div>
                                         </div>
-                                        <div class="form-btns">
-                                            <button type="button" class="btn btn-outline" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Previous</button>
-                                            <button type="button" class="btn btn-primary" onclick="nextStep(4)">Review Booking <i class="fas fa-arrow-right"></i></button>
-                                        </div>
                                     </div>
-                                    <div class="step-content" data-step="4">
-                                        <h3>Review & Confirm</h3>
-                                        <div class="booking-summary" id="bookingSummary">
-                                            <div class="summary-row"><span>Name:</span> <span id="summaryName">-</span></div>
-                                            <div class="summary-row"><span>Email:</span> <span id="summaryEmail">-</span></div>
-                                            <div class="summary-row"><span>Room:</span> <span id="summaryRoom">-</span></div>
-                                            <div class="summary-row"><span>Check-in:</span> <span id="summaryCheckin">-</span></div>
-                                            <div class="summary-row"><span>Check-out:</span> <span id="summaryCheckout">-</span></div>
-                                            <div class="summary-row"><span>Guests:</span> <span id="summaryGuests">-</span></div>
-                                            <div class="summary-row total"><span>Total:</span> <span id="summaryTotal">-</span></div>
-                                        </div>
+                                    <div class="step-content active" data-step="4">
                                         <div class="form-group">
                                             <div class="captcha-container">
                                                 <label>Security Check</label>
@@ -1082,7 +1031,6 @@
                                             </div>
                                         </div>
                                         <div class="form-btns">
-                                            <button type="button" class="btn btn-outline" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Previous</button>
                                             <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i> Confirm Booking</button>
                                         </div>
                                     </div>
