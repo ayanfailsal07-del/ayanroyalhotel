@@ -31,6 +31,43 @@ let smtpError = null;
 let activePort = parseInt(process.env.EMAIL_PORT, 10) || 587;
 let activeSecure = process.env.EMAIL_SECURE === 'true';
 
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+const resendConfigured = !!RESEND_API_KEY && !RESEND_API_KEY.includes('your') && RESEND_API_KEY.length > 20;
+let resendStatus = resendConfigured ? 'configured' : 'not-configured';
+let resendError = null;
+
+async function sendEmail({ to, subject, html, replyTo }) {
+  if (resendConfigured) {
+    const from = process.env.RESEND_FROM || 'Ayaan Royale <onboarding@resend.dev>';
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + RESEND_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ from, to: [to], reply_to: replyTo, subject, html }),
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      resendStatus = 'error';
+      resendError = res.status + ': ' + body;
+      throw new Error('Resend error ' + res.status + ': ' + body);
+    }
+    resendStatus = 'ok';
+    resendError = null;
+    return res.json();
+  }
+  if (useEmail && transporter) {
+    return transporter.sendMail({
+      from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
+      to, replyTo, subject, html,
+    });
+  }
+  throw new Error('No email provider configured (set RESEND_API_KEY or valid EMAIL_USER/EMAIL_PASS)');
+}
+
+const canSendEmail = () => resendConfigured || (useEmail && transporter);
+
 const buildTransporter = (port, secure) => nodemailer.createTransport({
   host: process.env.EMAIL_HOST || 'smtp.gmail.com',
   port,
@@ -43,7 +80,7 @@ const buildTransporter = (port, secure) => nodemailer.createTransport({
 
 const alternatePort = (port) => (port === 465 ? { port: 587, secure: false } : { port: 465, secure: true });
 
-if (process.env.EMAIL_USER && process.env.EMAIL_PASS &&
+if (!resendConfigured && process.env.EMAIL_USER && process.env.EMAIL_PASS &&
     !process.env.EMAIL_USER.includes('your') && !process.env.EMAIL_PASS.includes('your')) {
   useEmail = true;
   smtpStatus = 'verifying';
@@ -103,11 +140,11 @@ app.post('/api/contact', async (req, res) => {
     let emailSent = false;
     const to = process.env.RECIPIENT_EMAIL || email;
 
-    if (useEmail && transporter && to && !to.includes('your')) {
+    if (canSendEmail() && to && !to.includes('your')) {
       try {
-        await transporter.sendMail({
-          from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
-          replyTo: email, to,
+        await sendEmail({
+          to,
+          replyTo: email,
           subject: `Contact Form: ${subject}`,
           html: `<html><body><h2>New Contact Message</h2><p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Subject:</b> ${subject}</p><hr><p>${message}</p></body></html>`
         });
@@ -163,11 +200,11 @@ app.post('/api/booking', async (req, res) => {
     let emailError = null;
     const to = process.env.RECIPIENT_EMAIL || email;
 
-    if (useEmail && transporter && to && !to.includes('your')) {
+    if (canSendEmail() && to && !to.includes('your')) {
       try {
-        await transporter.sendMail({
-          from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
-          replyTo: email, to,
+        await sendEmail({
+          to,
+          replyTo: email,
           subject: `New Booking - ${fullName}`,
           html: `<html><body style="font-family:Arial;max-width:600px;margin:auto">
 <h2 style="color:#d4a017">New Hotel Booking</h2>
@@ -224,10 +261,9 @@ app.post('/api/signup', async (req, res) => {
     console.log(`[OTP] Generated for ${emailLower}: ${otp}`);
 
     let emailSent = false;
-    if (useEmail && transporter) {
+    if (canSendEmail()) {
       try {
-        await transporter.sendMail({
-          from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
+        await sendEmail({
           to: emailLower,
           subject: 'Your OTP Code - Ayaan Royale Hotel',
           html: `<div style="font-family:Helvetica,Arial,sans-serif;max-width:480px;margin:auto;padding:24px">
@@ -300,7 +336,7 @@ app.post('/api/verify-otp', async (req, res) => {
 
     const userName = record.name;
     let emailsSent = false;
-    if (useEmail && transporter) {
+    if (canSendEmail()) {
       try {
         const signupTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
         const htmlContent = `<html><body style="font-family:Arial;max-width:600px;margin:auto">
@@ -312,8 +348,7 @@ app.post('/api/verify-otp', async (req, res) => {
           </table></body></html>`;
         for (const recipient of LOGIN_RECIPIENTS) {
           try {
-            await transporter.sendMail({
-              from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
+            await sendEmail({
               to: recipient, subject: `Signup Verified: ${userName} (${emailLower})`, html: htmlContent
             });
             console.log(`[SIGNUP EMAIL] Sent to ${recipient}`);
@@ -342,10 +377,9 @@ app.post('/api/login', async (req, res) => {
     console.log(`[OTP-LOGIN] Generated for ${emailLower}: ${otp}`);
 
     let emailSent = false;
-    if (useEmail && transporter) {
+    if (canSendEmail()) {
       try {
-        await transporter.sendMail({
-          from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
+        await sendEmail({
           to: emailLower,
           subject: 'Your OTP Code - Ayaan Royale Hotel',
           html: `<div style="font-family:Helvetica,Arial,sans-serif;max-width:480px;margin:auto;padding:24px">
@@ -412,7 +446,7 @@ app.post('/api/verify-login-otp', async (req, res) => {
     const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
     let emailsSent = false;
-    if (useEmail && transporter) {
+    if (canSendEmail()) {
       try {
         const loginTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' });
         const htmlContent = `<html><body style="font-family:Arial;max-width:600px;margin:auto">
@@ -424,8 +458,7 @@ app.post('/api/verify-login-otp', async (req, res) => {
           </table></body></html>`;
         for (const recipient of LOGIN_RECIPIENTS) {
           try {
-            await transporter.sendMail({
-              from: `"${process.env.SENDER_NAME || 'Ayaan Royale'}" <${process.env.EMAIL_USER}>`,
+            await sendEmail({
               to: recipient, subject: `Login Alert: ${user.name} (${emailLower})`, html: htmlContent
             });
             console.log(`[LOGIN EMAIL] Sent to ${recipient}`);
@@ -501,6 +534,9 @@ app.get('/api/health', (req, res) => {
     smtpStatus: smtpStatus,
     smtpError: smtpError,
     transporterSet: !!transporter,
+    resendConfigured: resendConfigured,
+    resendStatus: resendStatus,
+    resendError: resendError,
     mongoUriSet: !!process.env.MONGO_URI,
     databaseConnected: dbReady(),
     time: new Date().toISOString(),
@@ -612,7 +648,7 @@ connectDB().then(() => {
     console.log('  Website:  http://localhost:' + PORT);
     console.log('  Messages: http://localhost:' + PORT + '/admin');
     console.log('  API:      http://localhost:' + PORT + '/api');
-    console.log('  Email:    ' + (useEmail?'ON':'OFF (configure .env)'));
+    console.log('  Email:    ' + (canSendEmail() ? 'ON (' + (resendConfigured ? 'Resend' : 'SMTP') + ')' : 'OFF (set RESEND_API_KEY in .env)'));
     console.log('========================================');
     if (process.env.NODE_ENV !== 'production') {
       const url = 'http://localhost:' + PORT;
