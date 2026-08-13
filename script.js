@@ -1211,10 +1211,14 @@
             var address = document.getElementById('bkAddress').value;
             var roomTypeEl = document.getElementById('bkRoomType');
             var roomType = roomTypeEl ? roomTypeEl.value : '';
-            var guests = document.getElementById('bkGuests').value;
-            var checkin = document.getElementById('bkCheckin').value;
-            var checkout = document.getElementById('bkCheckout').value;
-            var rooms = document.getElementById('bkRooms').value;
+            var guestsEl = document.getElementById('bkGuests');
+            var guests = guestsEl ? guestsEl.value : '1';
+            var checkinEl = document.getElementById('bkCheckin');
+            var checkin = checkinEl ? checkinEl.value : '';
+            var checkoutEl = document.getElementById('bkCheckout');
+            var checkout = checkoutEl ? checkoutEl.value : '';
+            var roomsEl = document.getElementById('bkRooms');
+            var rooms = roomsEl ? roomsEl.value : '1';
             var bedPrefs = [];
             document.querySelectorAll('#bookingForm input[type="checkbox"][value]').forEach(function (cb) {
                 if (cb.closest('.step-content[data-step="2"]') && cb.checked) bedPrefs.push(cb.value);
@@ -1223,7 +1227,8 @@
             document.querySelectorAll('#bookingForm .step-content[data-step="3"] input[type="checkbox"]:checked').forEach(function (cb) {
                 extras.push(cb.value);
             });
-            var requests = document.getElementById('bkRequests').value;
+            var requestsEl = document.getElementById('bkRequests');
+            var requests = requestsEl ? requestsEl.value : '';
             var contactMethodEl = document.querySelector('input[name="bkContact"]:checked');
             var contactMethod = contactMethodEl ? contactMethodEl.value : '';
 
